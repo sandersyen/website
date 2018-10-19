@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'pages/home'
+  get 'pages/help'
+  get 'pages/about'
+  get 'pages/terms'
+
+  get 'sessions/sign_in'
+  get 'sessions/sign_out'
+
+  resources :groups
+
+  root 'pages#home'
 end
