@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181019214247) do
+ActiveRecord::Schema.define(version: 20181022161743) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -19,42 +19,25 @@ ActiveRecord::Schema.define(version: 20181019214247) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "group_id"
     t.string "name"
-    t.datetime "time"
+    t.text "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.text "location"
-    t.integer "time_poll_id"
-    t.integer "location_poll_id"
+    t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_events_on_group_id"
-    t.index ["location_poll_id"], name: "index_events_on_location_poll_id"
-    t.index ["time_poll_id"], name: "index_events_on_time_poll_id"
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "category_id"
+    t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_groups_on_category_id"
-  end
-
-  create_table "poll_options", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.integer "poll_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["poll_id"], name: "index_poll_options_on_poll_id"
-  end
-
-  create_table "polls", force: :cascade do |t|
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "end_time"
   end
 
   create_table "users", force: :cascade do |t|

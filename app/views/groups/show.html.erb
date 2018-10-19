@@ -12,8 +12,24 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @group.category %>
+  <%= category_label @group.category %>
 </p>
+
+<p>
+  <strong>Is public:</strong>
+  <%= @group.is_public %>
+</p>
+
+<p>
+  <strong>Events:</strong>
+</p>
+<ul>
+<% @group.events.each do |event| %>
+  <li>
+    <%= link_to event.name, event %>
+  </li>
+<% end %>
+</ul>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

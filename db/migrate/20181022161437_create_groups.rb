@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration[5.1]
       t.string :name
       t.text :description
       t.references :category, foreign_key: true
+      t.boolean :is_public
 
       t.timestamps
     end

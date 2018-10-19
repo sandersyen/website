@@ -1,24 +1,17 @@
-# README
+# Chrono
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Steps to get developing:
 
-Things you may want to cover:
+1. Install Ruby 2.5
+2. Use the command `gem install bundler` to install bundler.
+3. Clone this repository and navigate to it in a command prompt.
+4. Use the command `bundle install` to install all required dependencies for Chrono.
 
-* Ruby version
+You can also try [RailsInstaller](http://railsinstaller.org/en).
 
-* System dependencies
 
-* Configuration
+Running the server locally:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Create the database with `rake db:migrate`
+2. Run the server with `rails server`
+3. Open `http://localhost:3000` in your browser

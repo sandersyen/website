@@ -7,5 +7,7 @@ class CreateCategories < ActiveRecord::Migration[5.1]
     end
 
     Category.create(name: 'Technology')
+    Category.create(name: 'Business')
+    Category.create(name: 'Games')
   end
 end
