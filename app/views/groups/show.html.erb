@@ -24,12 +24,30 @@
   <strong>Events:</strong>
 </p>
 <ul>
-<% @group.events.each do |event| %>
+<% if @group.events.each do |event| %>
   <li>
     <%= link_to event.name, event %>
   </li>
+<% end.empty? %>
+  No events
+<% end%>
+
+</ul>
+
+<p>
+  <strong>Users:</strong>
+</p>
+<ul>
+<% if @group.users.each do |user| %>
+  <li>
+    <%= user %>
+  </li>
+<% end.empty? %>
+  No users
 <% end %>
 </ul>
+
+
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
