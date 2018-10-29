@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, for: :group_name %>
     <%= form.text_field :name, id: :group_name %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, for: :group_description %>
     <%= form.text_area :description, id: :group_description %>
   </div>
 
   <div class="field">
-    <%= form.label :category_id %>
+    <%= form.label :category_id, for: :group_category_id %>
     <%= form.select :category_id, category_options(group), id: :group_category_id %>
   </div>
 
   <div class="field">
-    <%= form.label :is_public %>
+    <%= form.label :is_public, for: :group_is_public %>
     <%= form.check_box :is_public, id: :group_is_public %>
   </div>
 
