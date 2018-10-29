@@ -6,5 +6,5 @@ class Group < ApplicationRecord
 
   validates :name, length: { in: 3..30 }
   validates :description, length: { maximum: 1000 }
-  validates :category, presence: true 
+  validates :category, presence: true
 end
