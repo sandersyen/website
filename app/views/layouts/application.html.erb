@@ -3,28 +3,46 @@
   <head>
     <title>Chrono</title>
     <%= csrf_meta_tags %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <h1>Chrono</h1>
-    Find this template in app/views/layouts/application.html.erb
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+      <%=image_tag "chrono png.png", width:"150", height:"80", alt: "Brand", class:'navbar-brand' %>
 
-    <p><strong>Links:</strong></p>
-    <ul>
-      <li><%= link_to 'Home', home_path %></li>
-      <li><%= link_to 'About', about_path %></li>
-      <li><%= link_to 'Terms', terms_path %></li>
-      <li><%= link_to 'Help', help_path %></li>
-      <li><%= link_to 'Events', events_path %></li>
-      <li><%= link_to 'Groups', groups_path %></li>
-    </ul>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to 'Home', home_path, class:"btn btn-outline-success mr-sm-2" %><span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'About', about_path, class:"btn btn-outline-success mr-sm-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Terms', terms_path, class:"btn btn-outline-success mr-sm-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Help', help_path, class:"btn btn-outline-success mr-sm-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Events', events_path, class:"btn btn-outline-success mr-sm-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Groups', groups_path, class:"btn btn-outline-success mr-sm-2" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-    <hr/>
-
+    <hr style= "height:5px; border:none; color:#333; background-color:#333;" />
+    
     <%= yield %>
-
+  
   </body>
 </html>
