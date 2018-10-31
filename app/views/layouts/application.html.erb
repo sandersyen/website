@@ -6,14 +6,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
   <body>
     <h1>Chrono</h1>
     Find this template in app/views/layouts/application.html.erb
-
-    <p><strong>Links:</strong></p>
-    <ul>
+        <p><strong>Links:</strong></p>
+      <%= google_sign_in_button 'Sign in with my Google account', proceed_to: create_login_path %>
+	    <ul>
       <li><%= link_to 'Home', home_path %></li>
       <li><%= link_to 'About', about_path %></li>
       <li><%= link_to 'Terms', terms_path %></li>
