@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'sessions/sign_out', as: 'sign_out'
 
   root 'pages#home', as: 'home'
+  get 'login', to: 'logins#new'
+  get 'login/create', to: 'logins#create', as: :create_login
 end
