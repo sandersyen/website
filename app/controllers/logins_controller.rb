@@ -20,7 +20,7 @@ class LoginsController < ApplicationController
     def authenticate_with_google
       if flash[:google_sign_in_token].present?
         identity = GoogleSignIn::Identity.new(flash[:google_sign_in_token])
-        user = User.find_by_id(google_id: identity.user_id)
+        user = User.find_by(google_id: identity.user_id)
         if user == nil
           user = User.create(google_id: identity.user_id, name: identity.name, email: identity.email_address, avatar_url: identity.avatar_url)
         end
