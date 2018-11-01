@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  google_id: MyString
+  name: User1
+  google_id: some-google-id-1
 
 two:
-  name: MyString
-  google_id: MyString
+  name: User2
+  google_id: some-google-id-2
