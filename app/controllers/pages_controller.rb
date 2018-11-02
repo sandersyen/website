@@ -10,4 +10,7 @@ class PagesController < ApplicationController
 
   def terms
   end
+
+  def explore
+  end
 end
