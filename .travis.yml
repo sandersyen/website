@@ -7,6 +7,7 @@ addons:
 rvm:
   - 2.5.1
 before_script:
+  - gem update bundler
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 script:
   - bundle exec rails db:migrate RAILS_ENV=test
