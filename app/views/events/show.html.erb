@@ -43,6 +43,7 @@
         </div>
       </main>
       <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+        <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content"%>
       </div>
     </div>
   </div>  
