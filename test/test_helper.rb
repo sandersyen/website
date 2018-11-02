@@ -6,5 +6,29 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def create_test_event
+    visit simulate_login_path
+    user = User.last
+
+    group = groups(:one)
+    group.save
+    group.group_memberships.create(user: user)
+
+    event = events(:one)
+    event.group = group
+    event.save
+
+    event
+  end
+
+  def create_test_group
+    visit simulate_login_path
+    user = User.last
+
+    group = groups(:one)
+    group.save
+    group.group_memberships.create(user: user)
+
+    [user, group]
+  end
 end

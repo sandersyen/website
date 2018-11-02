@@ -1,17 +1,6 @@
 require "application_system_test_case"
 
 class GroupsTest < ApplicationSystemTestCase
-  def create_test_group
-    visit simulate_login_path
-    user = User.last
-
-    group = groups(:one)
-    group.save
-    group.group_memberships.create(user: user)
-
-    return user, group
-  end
-
   test "add a new group" do
     visit simulate_login_path
 

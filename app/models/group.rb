@@ -4,7 +4,7 @@ class Group < ApplicationRecord
   has_many :group_memberships
   has_many :users, through: :group_memberships, dependent: :destroy
 
-  validates :name, length: { in: 3..30 }
+  validates :name, length: { in: 3..100 }
   validates :description, length: { maximum: 1000 }
   validates :category, presence: true
 
@@ -13,6 +13,7 @@ class Group < ApplicationRecord
     users.include?(user)
   end
 
+  # returns all events for this group that start in the future
   def upcoming_events
     events.where('start_time > ?', Time.now)
   end
