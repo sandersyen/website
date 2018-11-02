@@ -12,4 +12,8 @@ class Group < ApplicationRecord
   def can_edit?(user)
     users.include?(user)
   end
+
+  def upcoming_events
+    events.where('start_time > ?', Time.now)
+  end
 end

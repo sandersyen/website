@@ -3,6 +3,6 @@ class Event < ApplicationRecord
 
   # returns true if the user can edit this event
   def can_edit?(user)
-    users.include?(user)
+    group.users.include?(user)
   end
 end
