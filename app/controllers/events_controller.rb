@@ -49,7 +49,7 @@ class EventsController < ApplicationController
     return if enforce_permissions(@event)
 
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to events_path, notice: 'Event was successfully destroyed.'
   end
 
   private
