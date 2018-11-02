@@ -87,7 +87,7 @@
                 <ul>
                 <% if @group.users.each do |user| %>
                   <li>
-                    <%= user %>
+                    <%= user.name %>
                   </li>
                 <% end.empty? %>
                   No users
