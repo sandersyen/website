@@ -51,7 +51,7 @@ class GroupsController < ApplicationController
     return if enforce_permissions(@group)
 
     @group.destroy
-    redirect_to groups_url, notice: 'Group was successfully destroyed.'
+    redirect_to groups_path, notice: 'Group was successfully destroyed.'
   end
 
   private
