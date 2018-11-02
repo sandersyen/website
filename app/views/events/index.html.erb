@@ -2,36 +2,44 @@
 
 <h2>Events</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Location</th>
-      <th>Group</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= event.location %></td>
-        <td><%= link_to event.group.name, event.group %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+<body>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      </div>
+      <main class="col-12 col-md-8 col-xl-10 bd-content">
+        <% @events.each do |event| %>
+          <p>
+            <%= link_to event do %>
+              <div class="card object-color text-black card-link">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <%= event.name %>
+                  </h3>
+              
+                  <h5 class="card-subtitle col mb-2 text-muted">
+                    <%= event.description %>
+                  </h5>
+                
+                  <p class="card-text bg-white text-dark h-100 p-3">
+                    <u>WHEN? </u>
+                    <%= event.start_time %><br>
+                    <u>WHERE? </u>
+                    <%= event.location %><br>
+                    <u>WHO? </u>
+                    <%= event.location %><br>
+                    <%= link_to event.group.name, event.group %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </p>            
+        <% end %>
+  
+      </main>
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+          <%= link_to 'Create An Event', new_event_path, class:"btn btn-primary btn-lg button-content"%>
+      </div>
+    </div>
+  </div>
+</body>
