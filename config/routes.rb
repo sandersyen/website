@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  if Rails.env.test?
+    get 'login/simulate', to: 'logins#simulate', as: 'simulate_login'
+  end
+
   resources :events
   resources :groups
   get 'pages/help', as: 'help'

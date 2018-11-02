@@ -2,6 +2,13 @@ class LoginsController < ApplicationController
   def new
   end
 
+  def simulate
+    user = User.new(name: 'Username', email: 'user@email.com', avatar_url: 'http://google.com/avatar.png', google_id: 'google-id')
+    user.save
+    session[:user_id] = user.id
+    redirect_to home_path
+  end
+
   def create
     if user = authenticate_with_google
       session[:user_id] = user.id
