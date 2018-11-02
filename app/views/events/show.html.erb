@@ -1,34 +1,49 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+<body>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      </div>
+      <main class="col-12 col-md-8 col-xl-10 bd-content">
+        <div class="card object-color text-black card-link">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h3 class="card-title">
+                  <%= @event.name %>
+                </h3>
+              </div>
+              <div class="col text-right text-up">
+                <%= link_to edit_event_path(@event), class: 'btn btn-default icon-effect' do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  Edit
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="card-subtitle col mb-2 text-muted">
+                <%= @event.description %>
+              </h5>
+            </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Group:</strong>
-  <%= link_to @event.group.name, @event.group %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 eq-height">
+                <p class="card-text bg-white text-dark h-100 p-3">
+                  <u>GROUP: </u><br>
+                  <%= link_to @event.group.name, @event.group %><br>
+                  <u>WHEN?</u><br>
+                  <%= @event.start_time %><br>
+                  <u>WHERE?</u><br>
+                  <%= @event.location %><br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      </div>
+    </div>
+  </div>  
+</body> 
