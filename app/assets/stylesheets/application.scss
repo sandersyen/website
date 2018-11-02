@@ -16,3 +16,55 @@
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap.*/
 @import "bootstrap";
+
+.nav-logo {
+    width: 290px;
+    height: 90px;
+}
+
+.nav-button {
+    width: 106px;
+    text-align: center;
+}
+
+.nav-bottom-line {
+    border-bottom: 5px solid black;
+}
+
+.object-color {
+    background-color: #E4E4E4;
+    text-decoration: #575757;
+}
+
+.card-link a {
+    text-decoration: none;
+    color: black;
+}
+
+.card-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 30px;
+    white-space: nowrap;
+}
+
+.card-content-bottom {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.button-content {
+    white-space: normal;
+}
+
+/*
+.icon-effect{
+    color: lightgray;
+}
+
+.icon-effect:hover{
+    color: gray;
+}
+
+//font awesome
+*/
