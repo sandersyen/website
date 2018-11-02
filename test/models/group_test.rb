@@ -13,16 +13,16 @@ class GroupTest < ActiveSupport::TestCase
   end
 
   test 'group without anything' do
-    assert !Group.new.valid?
+    assert Group.new.invalid?
   end
 
   test 'group with short name' do
-    assert !Group.new(name: 'A', category: @category).valid?
+    assert Group.new(name: 'A', category: @category).invalid?
   end
 
   test 'group with long desc' do
     desc = (1 .. 10000).to_a.map{|i| i.to_s}.join
-    assert !Group.new(name: 'Group name', category: @category, description: desc).valid?
+    assert Group.new(name: 'Group name', category: @category, description: desc).invalid?
   end
 
   test 'group can add users' do
