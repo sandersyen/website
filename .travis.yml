@@ -1,9 +1,9 @@
-# services:
-#   - postgresql
 addons:
   apt:
-    - google-chrome-stable
-    - chromium-chromedriver
+    update: true
+    packages:
+      - google-chrome-stable
+      - chromium-chromedriver
 rvm:
   - 2.5.1
 before_script:
