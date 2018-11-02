@@ -1,5 +1,115 @@
 <p id="notice"><%= notice %></p>
 
+<body>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      </div>
+      <main class="col-12 col-md-8 col-xl-10 bd-content">
+        <div class="card object-color text-black card-link">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h3 class="card-title">
+                  <%= @group.name %>
+                </h3>
+              </div>
+              <div class="col text-right text-up">
+                <%= link_to edit_group_path(@group), class: 'btn btn-default icon-effect' do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  Edit
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="card-subtitle col mb-2 text-muted">
+              CONTACT: <%= 123 %>
+              </h5>
+              <h5 class="card-subtitle col card-content-bottom text-right text-muted">
+                <%= 50 %> MEMBERS
+              </h5>
+            </div>
+
+            <p class="card-text bg-light text-dark">
+              <u>DESCRIPTION:</u>
+              <%= @group.description %>
+            </p>
+
+            <div class="row">
+              <% if @group.events.each do |event| %>
+                <div class="col-sm-12 col-md-6 eq-height">
+                  <p class="card-text bg-white text-dark h-100">
+                    <u>UPCOMMING EVENT:</u><br>
+                    <%= link_to event.name, event %><br>
+                    <u>WHEN?</u>
+                    <%= link_to event.start_time, event %><br>
+                    <u>WHERE?</u>
+                    <%= link_to event.location, event %><br>
+                    <u>DESCRIPTION?</u>
+                    <%= link_to event.description, event %><br>
+                  </p>
+                </div>
+              <%end%>
+            </div>
+            
+            <% if @group.events.each do |event| %>
+            <% end.empty? %>
+              <h5 align="middle"><b> No Events </b></h5>
+            <% end%>
+            <% end%>
+            
+          </div>
+        </div>
+      </main>
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+
+        <%= link_to 'Leave Group', @group, method: :"#", data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content"%>
+        
+        <!--
+        <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-3"%>
+        -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg mt-3 button-content" data-toggle="modal" data-target="#memberList">
+          Show Member List
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="memberList" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Members</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                <% if @group.users.each do |user| %>
+                  <li>
+                    <%= user %>
+                  </li>
+                <% end.empty? %>
+                  No users
+                <% end %>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-3 button-content"%>
+      </div>
+    </div>
+  </div>  
+</body> 
+
+
+
+
+<!--
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
@@ -47,7 +157,7 @@
 <% end %>
 </ul>
 
-
-
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+
+-->
