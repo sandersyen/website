@@ -1,6 +1,17 @@
 require "application_system_test_case"
 
 class GroupsTest < ApplicationSystemTestCase
+  def create_test_group
+    visit simulate_login_path
+    user = User.last
+
+    group = groups(:one)
+    group.save
+    group.group_memberships.create(user: user)
+
+    return user, group
+  end
+
   test "add a new group" do
     visit simulate_login_path
 
@@ -17,13 +28,23 @@ class GroupsTest < ApplicationSystemTestCase
     assert_selector "#notice", text: "Group was successfully created."
   end
 
-  test "destroy a new group" do
-    visit simulate_login_path
-    user = User.last
+  test "edit an existing group" do
+    user, group = create_test_group
 
-    group = groups(:one)
-    group.save
-    group.group_memberships.create(user: user)
+    visit group_path(group)
+
+    click_on 'Edit'
+
+    name = "Group #{rand(10)}"
+    fill_in 'group_name', with: name
+
+    click_on 'Update Group'
+
+    assert_selector "h3", text: name
+  end
+
+  test "destroy a new group" do
+    user, group = create_test_group
 
     visit group_path(group)
 
