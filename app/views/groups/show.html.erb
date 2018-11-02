@@ -30,7 +30,7 @@
               </h5>
             </div>
 
-            <p class="card-text bg-light text-dark">
+            <p class="card-text bg-light text-dark p-3">
               <u>DESCRIPTION:</u>
               <%= @group.description %>
             </p>
@@ -38,14 +38,14 @@
             <div class="row">
               <% if @group.events.each do |event| %>
                 <div class="col-sm-12 col-md-6 eq-height">
-                  <p class="card-text bg-white text-dark h-100">
+                  <p class="card-text bg-white text-dark h-100 p-3">
                     <u>UPCOMMING EVENT:</u><br>
                     <%= link_to event.name, event %><br>
-                    <u>WHEN?</u>
+                    <u>WHEN?</u><br>
                     <%= link_to event.start_time, event %><br>
-                    <u>WHERE?</u>
+                    <u>WHERE?</u><br>
                     <%= link_to event.location, event %><br>
-                    <u>DESCRIPTION?</u>
+                    <u>DESCRIPTION?</u><br>
                     <%= link_to event.description, event %><br>
                   </p>
                 </div>
