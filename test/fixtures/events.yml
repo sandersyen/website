@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
+  name: Event1
+  description: Event1 description!
   start_time: 2018-10-22 11:17:43
   end_time: 2018-10-22 11:17:43
-  location: MyText
+  location: Location of event 1.
   group: one
 
 two:
-  name: MyString
-  description: MyText
+  name: Event2
+  description: Another description, this is for event 2.
   start_time: 2018-10-22 11:17:43
   end_time: 2018-10-22 11:17:43
-  location: MyText
+  location: The location of event 2.
   group: two

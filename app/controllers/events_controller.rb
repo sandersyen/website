@@ -12,11 +12,14 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    return if enforce_login(events_path)
+
     @event = Event.new
   end
 
   # GET /events/1/edit
   def edit
+    return if enforce_permissions(@event)
   end
 
   # POST /events
@@ -32,6 +35,8 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
+    return if enforce_permissions(@event)
+
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -41,6 +46,8 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
+    return if enforce_permissions(@event)
+
     @event.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
@@ -54,5 +61,13 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:name, :description, :start_time, :end_time, :location, :group_id)
+    end
+
+    def enforce_permissions(event)
+      if !event.can_edit?(current_user)
+        redirect_to event, alert: 'You are not allowed to do that.'
+        return true
+      end
+      return false
     end
 end

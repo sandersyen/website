@@ -150,7 +150,7 @@
 <ul>
 <% if @group.users.each do |user| %>
   <li>
-    <%= user %>
+    <%= user_label(user) %>
   </li>
 <% end.empty? %>
   No users
