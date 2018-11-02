@@ -101,6 +101,7 @@
           </div>
         </div>
         <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-3 button-content"%>
+        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-3 btn-lg button-content"%>
       </div>
     </div>
   </div>  
