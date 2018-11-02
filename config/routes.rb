@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'pages/about', as: 'about'
   get 'pages/terms', as: 'terms'
 
+  get 'pages/explore', as: 'explore'
+
   get 'sessions/sign_in', as: 'sign_in'
   get 'sessions/sign_out', as: 'sign_out'
 
