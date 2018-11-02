@@ -6,7 +6,7 @@
     
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bottom-line">
@@ -49,6 +49,10 @@
         </ul>
       </div>
     </nav>
+
+    <%= google_sign_in_button 'Sign in with my Google account', proceed_to: create_login_path %>
+    
+    <hr style= "height:5px; border:none; color:#333; background-color:#333;" />
     
     <%= yield %>
   

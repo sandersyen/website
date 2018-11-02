@@ -46,3 +46,4 @@ gem 'bootstrap', '~> 4.1.3'
 
 # Bootstrap JavaScript depends on jQuery. If you're using Rails 5.1+, add the jquery-rails gem to your Gemfile
 gem 'jquery-rails'
+gem 'google_sign_in'
