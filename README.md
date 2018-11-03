@@ -6,7 +6,9 @@
 
 1. Install [Ruby 2.5](https://www.ruby-lang.org/en/downloads/)
 2. Use the command `gem install bundler` to install bundler, which we use to manage dependencies
-4. Use the command `bundle install` from inside the project directory to install all required dependencies
+4. Use the command `bundle install`* from inside the project directory to install all required dependencies
+
+*If you run in to an issue with `bundle install` related to `pg`, try running `bundle install --without production` instead.
 
 ## Running the Server
 
