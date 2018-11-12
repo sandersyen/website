@@ -1,4 +1,4 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<p id="notice"><%= notice %></p>
 
 <body>
   <div class="container-fluid">
@@ -119,7 +119,12 @@
               <div class="modal-body">
 
 
-                
+                <form action="/user" method="post">
+                  <input type="text">
+                  <!-- other inputs here -->
+                  <input type="submit" value="Submit This Form">
+                </form>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -130,9 +135,6 @@
 
 
         <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-3 button-content"%>
-
-        <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-3 button-content"%>
-
         <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-3 btn-lg button-content"%>
       </div>
     </div>
