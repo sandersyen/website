@@ -8,7 +8,7 @@
       <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
       </div>
       <main class="col-12 col-md-8 col-xl-10 bd-content">
-        <% @groups.each do |group| %>
+        <% current_user.groups.each do |group| %>
           <p>
             <%= link_to group do %>
               <div class="card object-color text-black card-link">
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-</body>  
+</body>
 
 
 
@@ -75,7 +75,7 @@
               </div>
             </div>
           <% end %>
-        </td>  
+        </td>
         <td><%= group.name %></td>
         <td><%= group.description %></td>
         <td><%= category_label group.category %></td>
@@ -85,8 +85,8 @@
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>  
-  
+  </tbody>
+
 </table>
 -->
 <br>
