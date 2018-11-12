@@ -2,9 +2,16 @@ class LoginsController < ApplicationController
   def new
   end
 
+  def simulate
+    user = User.new(name: 'Username', email: 'user@email.com', avatar_url: 'http://google.com/avatar.png', google_id: 'google-id')
+    user.save
+    session[:user_id] = user.id
+    redirect_to home_path
+  end
+
   def create
     if user = authenticate_with_google
-      cookies.signed[:user_id] = user.id
+      session[:user_id] = user.id
       redirect_to home_path, notice: 'You logged in successfully!'
     else
       redirect_to home_path, alert: 'Authentication failed, please try again.'
@@ -12,7 +19,7 @@ class LoginsController < ApplicationController
   end
 
   def destroy
-    cookies.signed[:user_id] = nil
+    session[:user_id] = nil
     redirect_to home_path
   end
 

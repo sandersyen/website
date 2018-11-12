@@ -1,5 +1,60 @@
 <!DOCTYPE html>
 <html>
+
+  <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
+
+  <style>
+  .img-circular{
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    display: block;
+    border-radius: 50%;
+  }
+  </style>
+
+  <style>
+    .right1 {
+      position: absolute;
+      right: 0px;
+      width: 280px;
+    }
+  </style>
+
+  <style>
+    .right2 {
+      position: absolute;
+      right: 0px;
+      width: 150px;
+    }
+  </style>
+
+  <style>
+    .right3 {
+      position: absolute;
+      right: 0px;
+      width: 100px;
+    }
+  </style>
+
+  <style>
+    .right4 {
+      position: absolute;
+      right: 0px;
+      width: 12.5%;
+    }
+  </style>
+
+
+  <style>
+    .in {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+
+
   <head>
     <title>Chrono</title>
     <%= csrf_meta_tags %>
@@ -31,7 +86,7 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to 'Explore', "#", class:"btn btn-outline-success mr-sm-2 nav-button" %>
+            <%= link_to 'Explore', explore_path, class:"btn btn-outline-success mr-sm-2 nav-button" %>
           </li>
           
           <!--
@@ -55,14 +110,30 @@
         <% if flash[:notice] %>
           <b>Notice:</b> <%= flash[:notice] %>
         <% end %>
-        
-        <% if logged_in? %>
-          <%= image_tag current_user.avatar_url, width: 48 %>
-          Hi, <%= current_user.name %>!
-          <%= button_to 'Sign Out', logout_path, method: :delete %>
-        <% else %>
-          <%= google_sign_in_button 'Sign in with my Google account', proceed_to: create_login_path %>
-        <% end %>
+
+
+
+
+          <% if logged_in? %>
+          <div class="right1" class="in">
+            Hi, <%= current_user.name %>!
+          </div>
+          <div class="right2" class="in">
+            <%= image_tag current_user.avatar_url,:class=> "img-circular"%>
+          </div>
+          <div class="right3" class="in">
+            <%= button_to 'Sign Out', logout_path, method: :delete %>
+          </div>
+
+          <% else %>
+          <div class= "right4" class="in" >
+            <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path %>
+          </div>
+          <% end %>
+
+
+
+
       </div>
       
     </nav>

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # gets the User model of the current user (or nil if the user is not logged in)
   def current_user
     # find a user by id based on the stored :user_id cookie
-    User.find_by_id(cookies.signed[:user_id])
+    User.find_by_id(session[:user_id])
   end
 
   def enforce_login(redirect_path)
