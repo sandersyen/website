@@ -116,11 +116,11 @@
               <div class="modal-body">
 
 
-                <form action="/user" method="post">
-                  <input type="text">
-                  <!-- other inputs here -->
-                  <input type="submit" value="Submit This Form">
-                </form>
+                <%= form_tag invite_group_url do %>
+                <%= label_tag :email %>
+                <%= text_field_tag :email %>
+                <%= submit_tag "Invite", class: "btn btn-primary btn-lg mt-2 button-content"%>
+                <% end %>
 
               </div>
               <div class="modal-footer">

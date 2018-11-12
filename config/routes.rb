@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   post 'groups/:id/join', to: 'groups#join_group', as: 'join_group'
   post 'groups/:id/leave', to: 'groups#leave_group', as: 'leave_group'
+  post 'groups/:id/invite', to: 'groups#join_group', as: 'invite_group'
 
   resources :events
   resources :groups
