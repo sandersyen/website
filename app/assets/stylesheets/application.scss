@@ -57,6 +57,46 @@
     white-space: normal;
 }
 
+
+.img-circular{
+ width: 40px;
+ height: 40px;
+ background-size: cover;
+ display: block;
+ border-radius: 50%;
+}
+
+.right1 {
+ position: absolute;
+ right: 0px;
+ width: 280px;
+}
+
+.right2 {
+ position: absolute;
+ right: 0px;
+ width: 150px;
+}
+
+.right3 {
+ position: absolute;
+ right: 0px;
+ width: 100px;
+}
+
+.right4 {
+ position: absolute;
+ right: 0px;
+ width: 12.5%;
+}
+
+.in {
+ display: inline-block;
+ width: 100px;
+ height: 100px;
+}
+
+
 /*
 .icon-effect{
     color: lightgray;

@@ -3,56 +3,7 @@
 
   <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 
-  <style>
-  .img-circular{
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    display: block;
-    border-radius: 50%;
-  }
-  </style>
 
-  <style>
-    .right1 {
-      position: absolute;
-      right: 0px;
-      width: 280px;
-    }
-  </style>
-
-  <style>
-    .right2 {
-      position: absolute;
-      right: 0px;
-      width: 150px;
-    }
-  </style>
-
-  <style>
-    .right3 {
-      position: absolute;
-      right: 0px;
-      width: 100px;
-    }
-  </style>
-
-  <style>
-    .right4 {
-      position: absolute;
-      right: 0px;
-      width: 12.5%;
-    }
-  </style>
-
-
-  <style>
-    .in {
-      display: inline-block;
-      width: 100px;
-      height: 100px;
-    }
-  </style>
 
 
   <head>
@@ -108,7 +59,7 @@
           <b>Alert:</b> <%= flash[:alert] %>
         <% end %>
         <% if flash[:notice] %>
-          <b>Notice:</b> <%= flash[:notice] %>
+          <b>Notice:&nbsp;</b> <%= flash[:notice] %>
         <% end %>
 
 
