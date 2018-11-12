@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
 
   post 'groups/:id/join', to: 'groups#join_group', as: 'join_group'
+  post 'groups/:id/leave', to: 'groups#leave_group', as: 'leave_group'
 
   resources :events
   resources :groups
