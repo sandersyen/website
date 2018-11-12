@@ -55,7 +55,19 @@
               <h5 align="middle"><b> No Events </b></h5>
             <% end%>
             <% end%>
-            
+          
+
+            <!-- TODO: Move this somewhere else, maybe a modal? -->
+            <h5>Invite Member</h5>
+            <%= form_tag(invite_group_member_path, method: :post) do %>
+              <%= text_field_tag :email, nil, id: :invite_member_email %>
+              <%= submit_tag 'Invite' %>
+            <% end %>
+
+            <% if @invite.presence %>
+              You have been invited to this group!
+              <%= button_to 'Accept Invite', accept_group_invite_path(@group), method: :post %>
+            <% end %>
           </div>
         </div>
       </main>
@@ -83,7 +95,7 @@
                 <ul>
                 <% if @group.users.each do |user| %>
                   <li>
-                    <%= user.name %>
+                    <%= user_label user %>
                   </li>
                 <% end.empty? %>
                   No users

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_01_031207) do
+ActiveRecord::Schema.define(version: 2018_11_12_182427) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2018_11_01_031207) do
     t.index ["group_id"], name: "index_events_on_group_id"
   end
 
+  create_table "group_invites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_invites_on_group_id"
+    t.index ["user_id"], name: "index_group_invites_on_user_id"
+    t.index [nil, nil], name: "index_group_invites_on_user_and_group", unique: true
+  end
+
   create_table "group_memberships", force: :cascade do |t|
     t.integer "group_id"
     t.integer "user_id"
@@ -47,6 +57,20 @@ ActiveRecord::Schema.define(version: 2018_11_01_031207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_groups_on_category_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "notif_type"
+    t.integer "user_id"
+    t.integer "actor_id"
+    t.string "actor_type"
+    t.integer "target_id"
+    t.string "target_type"
+    t.boolean "is_read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notif_type", nil, nil, "actor_type", nil, "target_type"], name: "notifications_index", unique: true
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
