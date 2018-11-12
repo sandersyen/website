@@ -56,10 +56,14 @@
 
         <!-- TODO: This should be formatted nicely and moved somewhere! -->
         <% if flash[:alert] %>
-          <b>Alert:</b> <%= flash[:alert] %>
+          <span id="alert">
+            <b>Alert:&nbsp;</b> <%= flash[:alert] %>
+          </span>
         <% end %>
         <% if flash[:notice] %>
-          <b>Notice:&nbsp;</b> <%= flash[:notice] %>
+          <span id="notice">
+            <b>Notice:&nbsp;</b> <%= flash[:notice] %>
+          </span>
         <% end %>
 
 

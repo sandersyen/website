@@ -21,8 +21,6 @@ class GroupsController < ApplicationController
     return if enforce_permissions(@group)
   end
 
-
-
   # POST /groups
   def create
     return if enforce_login(@group)
@@ -38,9 +36,6 @@ class GroupsController < ApplicationController
       render :new
     end
   end
-
-
-
 
   # POST /groups/:id:/join
   def join_group
@@ -61,10 +56,6 @@ class GroupsController < ApplicationController
     end
   end
 
-
-
-
-
   # POST /groups/:id:/leave
   def leave_group
     return if enforce_login(@group)
@@ -83,15 +74,6 @@ class GroupsController < ApplicationController
       render :new
     end
   end
-
-
-
-
-
-  # @group.group_memberships.where(user: current_user).destroy
-
-
-
 
   # PATCH/PUT /groups/1
   def update
