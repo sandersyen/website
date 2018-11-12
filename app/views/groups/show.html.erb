@@ -63,13 +63,11 @@
       </main>
       <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
 
-        <%= link_to 'Leave Group', @group, method: :"#", data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content"%>
-
         <!--
-        <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-3"%>
+        <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-2 "%>
         -->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg mt-3 button-content" data-toggle="modal" data-target="#memberList">
+        <button type="button" class="btn btn-primary btn-lg mt-2  button-content" data-toggle="modal" data-target="#memberList">
           Show Member List
         </button>
 
@@ -101,7 +99,6 @@
           </div>
         </div>
 
-        <!-- Invite Members -->
         <button type="button" class="btn btn-primary btn-lg mt-3 button-content" data-toggle="modal" data-target="#inviteMember">
           Invite Members
         </button>
@@ -133,9 +130,17 @@
           </div>
         </div>
 
+        <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content"%>
 
-        <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-3 button-content"%>
-        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-3 btn-lg button-content"%>
+
+        <% if @group.users.include?(current_user) %>
+          <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content"%>
+         <% else %>
+          <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-3 button-content"%>
+        <% end %>
+
+
+        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content"%>
       </div>
     </div>
   </div>

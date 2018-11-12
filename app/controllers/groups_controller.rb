@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group ]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :leave_group ]
 
   # GET /groups
   def index
@@ -21,6 +21,8 @@ class GroupsController < ApplicationController
     return if enforce_permissions(@group)
   end
 
+
+
   # POST /groups
   def create
     return if enforce_login(@group)
@@ -39,12 +41,13 @@ class GroupsController < ApplicationController
 
 
 
+
   # POST /groups/:id:/join
   def join_group
     return if enforce_login(@group)
     # *** put in enforcing permissions! ***
 
-    if( @group.users.include?(current_user))
+    if( @group.users.include?(current_user) )
       redirect_to @group, notice: 'User already in group!'
       return
     end
@@ -57,6 +60,32 @@ class GroupsController < ApplicationController
       render :new
     end
   end
+
+
+
+
+
+  # POST /groups/:id:/leave
+  def leave_group
+    return if enforce_login(@group)
+    # *** put in enforcing permissions! ***
+
+    unless @group.users.include?(current_user)
+      redirect_to @group, notice: 'User not in group!' # shouldnt need this, just in case
+      return
+    end
+
+    @membership = @group.group_memberships.find_by(user: current_user).destroy
+
+    if @membership.save
+      redirect_to @group, notice: 'Left group successfully!' # how to get this to go back to groups page?
+    else
+      render :new
+    end
+  end
+
+
+
 
 
   # @group.group_memberships.where(user: current_user).destroy
