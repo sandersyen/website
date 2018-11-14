@@ -23,7 +23,7 @@
 }
 
 .nav-button {
-    width: 106px;
+    width: fit-content;
     text-align: center;
 }
 
@@ -39,6 +39,10 @@
 .card-link a {
     text-decoration: none;
     color: black;
+}
+
+#logo {
+    margin-right: 2%;
 }
 
 .card-content {
@@ -70,8 +74,6 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  flex-wrap: nowrap;
-  padding:5px;
   /* This aligns items to the end line on main-axis */
   margin-left: auto;
 }
@@ -93,7 +95,8 @@
 }
 
 .flexItem {
-    margin:5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #userAvatar {
