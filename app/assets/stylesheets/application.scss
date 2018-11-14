@@ -66,36 +66,40 @@
  border-radius: 50%;
 }
 
-.right1 {
- position: absolute;
- right: 0px;
- width: 280px;
+.flexContainer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding:5px;
+  /* This aligns items to the end line on main-axis */
+  margin-left: auto;
 }
 
-.right2 {
- position: absolute;
- right: 0px;
- width: 150px;
+/* Medium screens */
+@media all and (max-width: 800px) {
+  .flexContainer {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
 }
 
-.right3 {
- position: absolute;
- right: 0px;
- width: 100px;
+/* Small screens */
+@media all and (max-width: 500px) {
+  .flexContainer {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
 }
 
-.right4 {
- position: absolute;
- right: 0px;
- width: 12.5%;
+.flexItem {
+    margin:5px;
 }
 
-.in {
- display: inline-block;
- width: 100px;
- height: 100px;
+#userAvatar {
+    margin-left: 10px;
+    margin-right: 10px;
 }
-
 
 /*
 .icon-effect{
