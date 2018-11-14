@@ -3,12 +3,15 @@ Rails.application.routes.draw do
     get 'login/simulate', to: 'logins#simulate', as: 'simulate_login'
   end
 
+  post 'groups/:id/join', to: 'groups#join_group', as: 'join_group'
+  post 'groups/:id/leave', to: 'groups#leave_group', as: 'leave_group'
+
   resources :events
   resources :groups
+  
   get 'pages/help', as: 'help'
   get 'pages/about', as: 'about'
   get 'pages/terms', as: 'terms'
-
   get 'pages/explore', as: 'explore'
 
   get 'sessions/sign_in', as: 'sign_in'
