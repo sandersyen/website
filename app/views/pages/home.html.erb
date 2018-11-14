@@ -1,3 +1,22 @@
+<!-- Mini-script for Calendar -->
+<% content_for :initiate_calendar do %>
+  <script type="text/javascript">
+    $('#calendar').fullCalendar({
+      events: {
+        url: '<%= events_path(format: :json) %>'
+      }
+    });
+  </script>
+<% end %>
+
+<!-- Add some space at the bottom of the Calendar -->
+<style type="text/css">
+	#calendar {
+		padding-bottom: 10%
+	}
+
+</style>
+
 <div class="jumbotron">
   <h1 class="display-4">Hello, world!</h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -8,3 +27,10 @@
 
 <h2>Pages#home</h2>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<h2>Events Calendar</h2>
+<div id = "calendar">
+	<%= yield :initiate_calendar %>
+</div>
+
+
