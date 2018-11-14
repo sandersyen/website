@@ -9,6 +9,8 @@ class Event < ApplicationRecord
   validate :start_cannot_be_in_the_past, :on => :create
   validate :start_must_be_before_end
 
+  after_destroy_commit :destroy_notifs
+
   def start_cannot_be_in_the_past
     if start_time.present? && start_time < Time.now - 3600
       errors.add(:start_time, "can't be in the past")
@@ -25,4 +27,9 @@ class Event < ApplicationRecord
   def can_edit?(user)
     group.users.include?(user)
   end
+
+  private
+    def destroy_notifs
+      Notification.where(target: self).or(Notification.where(actor: self)).destroy_all
+    end
 end
