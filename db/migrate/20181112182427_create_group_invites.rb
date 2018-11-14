@@ -7,6 +7,6 @@ class CreateGroupInvites < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :group_invites, [:user, :group], unique: true
+    add_index :group_invites, [:user_id, :group_id], unique: true
   end
 end

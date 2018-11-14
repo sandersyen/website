@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_182427) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_invites_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_group_invites_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_group_invites_on_user_id"
-    t.index [nil, nil], name: "index_group_invites_on_user_and_group", unique: true
   end
 
   create_table "group_memberships", force: :cascade do |t|
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_182427) do
     t.boolean "is_read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["notif_type", nil, nil, "actor_type", nil, "target_type"], name: "notifications_index", unique: true
+    t.index ["notif_type", "user_id", "actor_id", "actor_type", "target_id", "target_type"], name: "notifications_index", unique: true
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
