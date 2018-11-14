@@ -1,7 +1,11 @@
 <!-- Mini-script for Calendar -->
 <% content_for :initiate_calendar do %>
   <script type="text/javascript">
-  	$('#calendar').fullCalendar({});
+    $('#calendar').fullCalendar({
+      events: {
+        url: '<%= events_path(format: :json) %>'
+      }
+    });
   </script>
 <% end %>
 
