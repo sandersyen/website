@@ -4,10 +4,10 @@ one:
   name: User1
   google_id: some-google-id-1
   email: user1@email.com
-  avatar_url: user1.png
+  avatar_url: https://google.com/user1.png
 
 two:
   name: User2
   google_id: some-google-id-2
   email: user2@email.com
-  avatar_url: user2.png
+  avatar_url: https://google.com/user2.png
