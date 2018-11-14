@@ -1,0 +1,16 @@
+<h1>Notifications</h1>
+
+
+<% if @notifications.empty? %>
+  No notifications found.
+<% else %>
+  Notifications:
+  <ul>
+    <% @notifications.each do |notif| %>
+      <li>
+        <%= render_notification(notif) %>
+        <%= button_to 'Dismiss', dismiss_notification_path(notif), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
