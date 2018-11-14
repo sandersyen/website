@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
   # GET /groups
   def index
+    return if enforce_login(home_path)
     @groups = current_user.groups
   end
 

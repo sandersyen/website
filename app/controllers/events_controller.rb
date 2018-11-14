@@ -3,7 +3,8 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    return if enforce_login(home_path)
+    @events = current_user.upcoming_events
   end
 
   # GET /events/1
