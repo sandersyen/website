@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :leave_group ]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group ]
 
   # GET /groups
   def index
@@ -36,13 +36,13 @@ class GroupsController < ApplicationController
       render :new
     end
   end
-
+  
   # POST /groups/:id:/join
   def join_group
     return if enforce_login(@group)
     # *** put in enforcing permissions! ***
 
-    if( @group.users.include?(current_user) )
+    if( @group.users.include?(current_user))
       redirect_to @group, notice: 'User already in group!'
       return
     end
@@ -59,17 +59,19 @@ class GroupsController < ApplicationController
   # POST /groups/:id:/leave
   def leave_group
     return if enforce_login(@group)
-    # *** put in enforcing permissions! ***
 
-    unless @group.users.include?(current_user)
-      redirect_to @group, notice: 'User not in group!' # shouldnt need this, just in case
-      return
-    end
+    user = User.find_by_email(params[:invite_group][:email])
+    # if( @group.users.include?(user))
+    #   redirect_to @group, notice: 'User already in group!'
+    #   return
+    # end
+    
+    user
 
-    @membership = @group.group_memberships.find_by(user: current_user).destroy
+    @membership = @group.group_memberships.new(user: user)
 
     if @membership.save
-      redirect_to @group, notice: 'Left group successfully!' # how to get this to go back to groups page?
+      redirect_to @group, notice: 'Invited member successfully!'
     else
       render :new
     end
@@ -78,7 +80,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   def update
     return if enforce_permissions(@group)
-    
+
     if @group.update(group_params)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
