@@ -12,5 +12,6 @@ class PagesController < ApplicationController
   end
 
   def explore
+    @events = Event.all
   end
 end

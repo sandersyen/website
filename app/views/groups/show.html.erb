@@ -35,7 +35,7 @@
 
             <div class="row">
               <% if @group.events.each do |event| %>
-                <div class="col-sm-12 col-md-6 eq-height">
+                <div class="col-sm-12 col-md-6 eq-height group-event-row">
                   <p class="card-text bg-white text-dark h-100 p-3">
                     <u>UPCOMING EVENT:</u><br>
                     <%= link_to event.name, event %><br>
@@ -65,7 +65,7 @@
         <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-2 "%>
         -->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg mt-2  button-content" data-toggle="modal" data-target="#memberList">
+        <button type="button" class="btn btn-primary btn-lg mt-2 button-content" data-toggle="modal" data-target="#memberList">
           Show Member List
         </button>
 
@@ -102,7 +102,7 @@
         <% if @group.users.include?(current_user) %>
           <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content"%>
          <% else %>
-          <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-3 button-content"%>
+          <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-2 button-content"%>
         <% end %>
 
 

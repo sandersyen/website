@@ -1,2 +1,53 @@
 <h2>Pages#explore</h2>
-<p>Find me in app/views/pages/explore.html.erb</p>
+
+<p id="notice"><%= notice %></p>
+<body>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      </div>
+
+      <main class="col-12 col-md-8 col-xl-10 bd-content">
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text object-color" id="inputGroup-sizing-lg">Search</span>
+          </div>
+          <input type="text" class="form-control">
+        </div>
+
+        <% @events.each do |event| %>
+          <p>
+            <%= link_to event do %>
+              <div class="card object-color text-black card-link">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <%= event.name %>
+                  </h3>
+              
+                  <h5 class="card-subtitle col mb-2 text-muted">
+                    <%= event.description %>
+                  </h5>
+                
+                  <p class="card-text bg-white text-dark h-100 p-3">
+                    <u>WHEN? </u>
+                    <%= event.start_time %><br>
+                    <u>WHERE? </u>
+                    <%= event.location %><br>
+                    <u>WHO? </u>
+                    <%= event.location %><br>
+                    <%= link_to event.group.name, event.group %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </p>            
+        <% end %>
+      </main>
+
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+          <%= link_to 'Event Search', '#', class:"btn btn-primary btn-lg mt-2 button-content"%>
+          <%= link_to 'Group Search', '#', class:"btn btn-primary btn-lg mt-2 button-content"%>
+      </div>
+    </div>
+  </div>
+</body>
