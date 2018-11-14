@@ -49,18 +49,24 @@
                 </div>
               <%end%>
             </div>
-            
+
             <% if @group.events.each do |event| %>
             <% end.empty? %>
               <h5 align="middle"><b> No Events </b></h5>
             <% end%>
             <% end%>
-            
+          
+
+            <!-- TODO: Move this somewhere else? -->
+            <% if @invite.presence %>
+              You have been invited to this group!
+              <%= button_to 'Accept Invite', accept_group_invite_path(@group), method: :post %>
+            <% end %>
           </div>
         </div>
       </main>
       <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-        
+
         <!--
         <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-2 "%>
         -->
@@ -83,7 +89,7 @@
                 <ul>
                 <% if @group.users.each do |user| %>
                   <li>
-                    <%= user.name %>
+                    <%= user_label user %>
                   </li>
                 <% end.empty? %>
                   No users
@@ -96,6 +102,35 @@
             </div>
           </div>
         </div>
+
+        <button type="button" class="btn btn-primary btn-lg mt-3 button-content" data-toggle="modal" data-target="#inviteMember">
+          Invite Members
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="inviteMember" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Invite by email:</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= form_tag invite_group_member_path do %>
+                  <%= label_tag :email %>
+                  <%= text_field_tag :email, nil, id: :invite_member_email, class: 'form-control' %>
+                  <%= submit_tag "Invite", class: "btn btn-primary btn-lg mt-2 button-content"%>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content"%>
 
 
@@ -109,8 +144,8 @@
         <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content"%>
       </div>
     </div>
-  </div>  
-</body> 
+  </div>
+</body>
 
 
 
