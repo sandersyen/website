@@ -86,6 +86,7 @@ class GroupsController < ApplicationController
     if invite.save
       invite.create_notif
       redirect_to @group, notice: "You have invited #{invited_user.name} to the group."
+      UserMailer.group_invite(invited_user.email).deliver_now
     else
       redirect_to @group, alert: 'Unable to invite that user.'
     end
