@@ -11,7 +11,7 @@ class Group < ApplicationRecord
 
   # returns true if the user can modify this group
   def can_edit?(user)
-    users.include?(user)
+    is_admin?(user)
   end
 
   # returns all events for this group that start in the future

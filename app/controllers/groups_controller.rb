@@ -42,6 +42,7 @@ class GroupsController < ApplicationController
     end
   end
 
+
   # POST /groups/:id/accept_invite
   def accept_invite
     invite = GroupInvite.find_by(group: @group, user: current_user)
@@ -57,6 +58,7 @@ class GroupsController < ApplicationController
       redirect_to @group, notice: 'Unable to create membership, try again.'
     end
   end
+
 
   # POST /groups/:id/invite
   def invite_member
@@ -88,6 +90,7 @@ class GroupsController < ApplicationController
       redirect_to @group, alert: 'Unable to invite that user.'
     end
   end
+
 
   # DELETE /groups/:id/invite
   def disinvite_member
