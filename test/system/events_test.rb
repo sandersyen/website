@@ -43,4 +43,36 @@ class EventsTest < ApplicationSystemTestCase
 
     assert_selector "#notice", text: "Event was successfully destroyed."
   end
+
+  test "add a new event without name" do
+    user, group = create_test_group
+    
+    visit events_path
+    
+    click_on 'Create An Event'
+    
+    #fill_in 'event_name', with: 'Event name'
+    fill_in 'event_description', with: 'Event description'
+    select group.name, from: 'event_group_id'
+    
+    click_on 'Create Event'
+    
+    assert_selector "h2", text: "1 error prohibited this event from being saved:"
+  end
+
+  test "add a new event with no description" do
+    user, group = create_test_group
+    
+    visit events_path
+    
+    click_on 'Create An Event'
+    
+    fill_in 'event_name', with: 'Event name'
+    #fill_in 'event_description', with: 'Event description'
+    select group.name, from: 'event_group_id'
+    
+    click_on 'Create Event'
+    
+    assert_selector "#notice", text: "Event was successfully created."
+  end
 end

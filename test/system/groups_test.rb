@@ -43,4 +43,57 @@ class GroupsTest < ApplicationSystemTestCase
 
     assert_selector "#notice", text: "Group was successfully destroyed."
   end
+
+  test "test no group name of event" do
+    visit simulate_login_path
+    
+    visit groups_path
+    
+    click_on 'Create A Group'
+    
+    #fill_in 'group_name', with: 'Group name'
+    fill_in 'group_description', with: 'Group description'
+    check 'group_is_public'
+    
+    click_on 'Create Group'
+    
+    assert_selector "h2", text: "1 error prohibited this group from being saved:"
+  end
+
+  test "test no group description of event" do
+    visit simulate_login_path
+    
+    visit groups_path
+    
+    click_on 'Create A Group'
+    
+    fill_in 'group_name', with: 'Group name'
+    #fill_in 'group_description', with: 'Group description'
+    check 'group_is_public'
+    
+    click_on 'Create Group'
+    
+    assert_selector "#notice", text: "Group was successfully created."
+  end
+
+  test "add a new group test bussness category" do
+    visit simulate_login_path
+    
+    visit groups_path
+    
+    click_on 'Create A Group'
+    
+    fill_in 'group_name', with: 'Group name'
+    fill_in 'group_description', with: 'Group description'
+    check 'group_is_public'
+    
+    select('2', :from => 'group_category_id')
+    
+    click_on 'Create Group'
+    
+    
+    
+    assert_selector "#notice", text: "Group was successfully created."
+  end
+
 end
