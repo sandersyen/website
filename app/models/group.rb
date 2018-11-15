@@ -19,6 +19,27 @@ class Group < ApplicationRecord
     events.where('start_time > ?', Time.now)
   end
 
+  def is_member?(user)
+    users.include?(user)
+  end
+
+  def is_admin?(user)
+    user_role(user) == 'ADMIN'
+  end
+
+  def admins
+    group_memberships.where(role: 'ADMIN')
+  end
+
+  def user_to_membership(user)
+    group_memberships.find_by(user: user)
+  end
+
+  def user_role(user)
+    membership = user_to_membership(user)
+    membership.nil? ? nil : membership.role
+  end
+
   private
     def destroy_notifs
       Notification.where(target: self).or(Notification.where(actor: self)).destroy_all
