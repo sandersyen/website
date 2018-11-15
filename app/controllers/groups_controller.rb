@@ -106,6 +106,8 @@ class GroupsController < ApplicationController
     end
   end
 
+
+
   # POST /groups/:id/join
   def join_group
     return if enforce_login(@group)
@@ -136,7 +138,7 @@ class GroupsController < ApplicationController
     end
 
     @membership = @group.group_memberships.find_by(user: current_user).destroy
-    redirect_to groups_path, notice: 'Left group successfully!' # how to get this to go back to groups page?
+    redirect_to groups_path, notice: 'Left group successfully!'
   end
 
 
