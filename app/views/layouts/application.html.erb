@@ -15,29 +15,30 @@
 </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light nav-bottom-line">
     
-      <%=image_tag "chrono png.png", class:'nav-logo navbar-brand', alt: "Brand"%>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bottom-line">
+      <div id = 'logo'>
+        <%=image_tag "chrono png.png", class:'nav-logo navbar-brand', alt: "Brand"%>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse align-items-end align-self-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <%= link_to 'Home', home_path, class:"btn btn-outline-success mr-sm-2 nav-button" %><span class="sr-only">(current)</span>
+            <%= link_to 'Home', home_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %><span class="sr-only">(current)</span>
           </li>
 
           <li class="nav-item">
-            <%= link_to 'My Groups', groups_path, class:"btn btn-outline-success mr-sm-2 nav-button" %>
+            <%= link_to 'My Groups', groups_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %>
           </li>
 
           <li class="nav-item">
-            <%= link_to 'My Events', events_path, class:"btn btn-outline-success mr-sm-2 nav-button" %>
+            <%= link_to 'My Events', events_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %>
           </li>
 
           <li class="nav-item">
-            <%= link_to 'Explore', explore_path, class:"btn btn-outline-success mr-sm-2 nav-button" %>
+            <%= link_to 'Explore', explore_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %>
           </li>
           
           <!--
@@ -68,26 +69,36 @@
 
 
 
-
+          <div class = "flexVerticalContainer">
           <% if logged_in? %>
-            <div class="right1" class="in">
-              Hi, <%= current_user.name %>!
-            </div>
-            <div class="right2" class="in">
-              <%= image_tag current_user.avatar_url,:class=> "img-circular"%>
-            </div>
-            <div class="right3" class="in">
 
-              <!-- TODO: Move this somewhere -->
-              <%= link_to "Notifications (#{current_user.notifications.count})", notifications_path %>
-              <%= button_to 'Sign Out', logout_path, method: :delete %>
+
+            <div class="flexVerticalItem" id = "userAvatar">
+              <div class= "flexHorizontalContainer">
+                <div>
+                  <%= image_tag current_user.avatar_url,:class=> "img-circular"%>
+                </div>
+
+                <div class = "avatarFooter">
+                  <%= current_user.name %>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="flexVerticalItem">
+              <%= button_to 'Sign Out', logout_path, method: :delete, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
             </div>
 
           <% else %>
-            <div class= "right4" class="in" >
-              <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path %>
+
+            <div class= "flexVerticalItem">
+              <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
             </div>
+
+
           <% end %>
+        </div>
 
 
 
