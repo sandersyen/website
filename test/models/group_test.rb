@@ -27,7 +27,7 @@ class GroupTest < ActiveSupport::TestCase
 
   test 'group can add users' do
     assert_difference '@group.users.count' do
-      @group.group_memberships.create(user: @user)
+      @group.group_memberships.create(user: @user, role: 'ADMIN')
     end
   end
 
