@@ -72,6 +72,7 @@
           <div class = "flexVerticalContainer">
           <% if logged_in? %>
 
+
             <div class="flexVerticalItem" id = "userAvatar">
               <div class= "flexHorizontalContainer">
                 <div>
@@ -94,6 +95,7 @@
             <div class= "flexVerticalItem">
               <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
             </div>
+
 
           <% end %>
         </div>
