@@ -22,7 +22,7 @@
                       category: <%=category_label group.category %>
                     </p>
                     <p class="col card-text card-content-bottom text-right">
-                      <%= group.users.count %> MEMBERS - <%= group.events.count %> UPCOMING EVENTS
+                      <%= group.users.count %> MEMBERS - <%= group.upcoming_events.count %> UPCOMMING EVENTS
                     </p>
                   </div>
                 </div>
@@ -32,7 +32,8 @@
         <% end %>
       </main>
       <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-          <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content"%>
+        <p></p>
+        <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content"%>
       </div>
     </div>
   </div>
