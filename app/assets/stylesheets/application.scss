@@ -24,7 +24,7 @@
 }
 
 .nav-button {
-    width: 106px;
+    width: fit-content;
     text-align: center;
 }
 
@@ -40,6 +40,10 @@
 .card-link a {
     text-decoration: none;
     color: black;
+}
+
+#logo {
+    margin-right: 2%;
 }
 
 .card-content {
@@ -63,52 +67,96 @@
 }
 
 .img-circular{
- width: 40px;
- height: 40px;
- background-size: cover;
- display: block;
+ width: 43px;
+ height: 43px;
  border-radius: 50%;
 }
 
-.right1 {
- position: absolute;
- right: 0px;
- width: 280px;
+.flexVerticalContainer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  /* This aligns items to the end line on main-axis */
+  margin-left: auto;
 }
 
-.right2 {
- position: absolute;
- right: 0px;
- width: 150px;
+/* Medium screens */
+@media all and (max-width: 800px) {
+  .flexVerticalContainer {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
 }
 
-.right3 {
- position: absolute;
- right: 0px;
- width: 100px;
+/* Small screens */
+@media all and (max-width: 500px) {
+  .flexVerticalContainer {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
 }
 
-.right4 {
- position: absolute;
- right: 0px;
- width: 12.5%;
-}
-
-.in {
- display: inline-block;
- width: 100px;
- height: 100px;
+.flexVerticalItem {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 
-/*
-.icon-effect{
-    color: lightgray;
+.flexHorizontalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.icon-effect:hover{
-    color: gray;
+.avatarFooter {
+    font-weight: bold;
+    line-height: 0px;
+    padding-bottom: 0.7rem;
+    padding-top: 0.5rem;
+    font-size: large;
+    font-family: sans-serif;
 }
 
-//font awesome
-*/
+#userAvatar {
+    margin-right: 15px;
+}
+
+
+ul{
+    padding: 0;
+    list-style: none;
+    background: #f2f2f2;
+}
+
+ul li{
+    display: inline-block;
+    position: relative;
+    line-height: 21px;
+    text-align: center;
+}
+ul li a{
+    display: block;
+    padding: 0px;
+    color: #333;
+    text-decoration: none;
+}
+ul li a:hover{
+    color: #fff;
+    background: #007bff;
+}
+ul li ul.dropdown{
+    min-width: 125px; /* Set width of the dropdown */
+    background: #007bff;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+}
+ul li:hover ul.dropdown{
+    display: block; /* Display the dropdown */
+}
+ul li ul.dropdown li{
+    display: block;
+}
+
+

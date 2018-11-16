@@ -103,7 +103,7 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-primary btn-lg mt-3 button-content" data-toggle="modal" data-target="#inviteMember">
+        <button type="button" class="btn btn-primary btn-lg mt-2 button-content" data-toggle="modal" data-target="#inviteMember">
           Invite Members
         </button>
 
@@ -141,8 +141,9 @@
           <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-2 button-content"%>
         <% end %>
 
-
-        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content"%>
+        <% if @group.can_edit?(current_user) %>
+          <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content"%>
+        <% end %>
       </div>
     </div>
   </div>

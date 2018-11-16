@@ -33,9 +33,7 @@ class GroupsController < ApplicationController
     return if enforce_login(@group)
 
     @group = Group.new(group_params)
-    @membership = @group.group_memberships.new(user: current_user)
-
-    # @group.group_memberships.where(user: current_user).destroy
+    @membership = @group.group_memberships.new(user: current_user, role: 'ADMIN')
 
     if @group.save && @membership.save
       redirect_to @group, notice: 'Group was successfully created.'
@@ -44,11 +42,12 @@ class GroupsController < ApplicationController
     end
   end
 
+
   # POST /groups/:id/accept_invite
   def accept_invite
     invite = GroupInvite.find_by(group: @group, user: current_user)
 
-    @membership = @group.group_memberships.new(user: current_user)
+    @membership = @group.group_memberships.new(user: current_user, role: 'USER')
 
     if invite.nil?
       redirect_to @group, notice: 'You have not been invited to that group.'
@@ -59,6 +58,7 @@ class GroupsController < ApplicationController
       redirect_to @group, notice: 'Unable to create membership, try again.'
     end
   end
+
 
   # POST /groups/:id/invite
   def invite_member
@@ -91,6 +91,7 @@ class GroupsController < ApplicationController
     end
   end
 
+
   # DELETE /groups/:id/invite
   def disinvite_member
     return if enforce_permissions(@group)
@@ -106,17 +107,24 @@ class GroupsController < ApplicationController
     end
   end
 
+
+
   # POST /groups/:id/join
   def join_group
     return if enforce_login(@group)
     # *** put in enforcing permissions! ***
 
-    if( @group.users.include?(current_user) )
+    unless @group.is_public?
+      redirect_to @group, alert: 'You are not allowed to join a private group.'
+      return
+    end
+
+    if @group.users.include?(current_user)
       redirect_to @group, notice: 'User already in group!'
       return
     end
 
-    @membership = @group.group_memberships.new(user: current_user)
+    @membership = @group.group_memberships.new(user: current_user, role: 'USER')
 
     if @membership.save
       redirect_to @group, notice: 'Joined group successfully!'
@@ -135,8 +143,15 @@ class GroupsController < ApplicationController
       return
     end
 
-    @membership = @group.group_memberships.find_by(user: current_user).destroy
-    redirect_to groups_path, notice: 'Left group successfully!' # how to get this to go back to groups page?
+    @membership = @group.group_memberships.find_by(user: current_user)
+
+    if @membership.is_admin? && @group.admins.count == 1
+      redirect_to @group, alert: 'You cannot leave that group since you are the only admin.'
+      return
+    else
+      @membership.destroy
+      redirect_to groups_path, notice: 'Left group successfully!'
+    end
   end
 
 
@@ -158,6 +173,7 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to groups_path, notice: 'Group was successfully destroyed.'
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
