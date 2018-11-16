@@ -2,10 +2,22 @@ require "application_system_test_case"
 
 class EventsTest < ApplicationSystemTestCase
   test "add a new event" do
-    user, group = create_test_group
-
-    visit events_path
-
+    #user, group = create_test_group
+    #visit events_path
+    #this should be changed in future just a hack around.
+    #tmp>>>
+    visit simulate_login_path
+    
+    visit groups_path
+    
+    click_on 'Create A Group'
+    
+    fill_in 'group_name', with: 'Group name'
+    fill_in 'group_description', with: 'Group description'
+    check 'group_is_public'
+    
+    click_on 'Create Group'
+    #tmp<<<
     click_on 'Create An Event'
 
     fill_in 'event_name', with: 'Event name'
