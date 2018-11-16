@@ -15,34 +15,55 @@ class EventsTest < ApplicationSystemTestCase
     click_on 'Create Event'
 
     assert_selector "#notice", text: "Event was successfully created."
-  end
-
-  test "edit an existing event" do
-    event = create_test_event
-
-    visit event_path(event)
-
+    assert_selector "h3", text: 'Event name'
+    #want to also check the other feilds of the group
+    
+    #Test editing an event
     click_on 'Edit'
-
+    
     name = "Event #{rand(10)}"
     fill_in 'event_name', with: name
-
+    
     click_on 'Update Event'
-
+    
     assert_selector "h3", text: name
-  end
-
-  test "destroy a new event" do
-    event = create_test_event
-
-    visit event_path(event)
-
+    #want to check other feilds as well in future
+    
+    #Test deleting an event
     page.accept_confirm do
-      click_on 'Delete Event'
+    click_on 'Delete Event'
     end
 
     assert_selector "#notice", text: "Event was successfully destroyed."
+    
   end
+
+#test "edit an existing event" do
+#  event = create_test_event
+
+#   visit event_path(event)
+#
+#   click_on 'Edit'
+
+#   name = "Event #{rand(10)}"
+#   fill_in 'event_name', with: name
+#
+#   click_on 'Update Event'
+#
+#   assert_selector "h3", text: name
+# end
+
+#  test "destroy a new event" do
+#    event = create_test_event
+#
+#    visit event_path(event)
+#
+#    page.accept_confirm do
+#      click_on 'Delete Event'
+#    end
+#
+#    assert_selector "#notice", text: "Event was successfully destroyed."
+#  end
 
   test "add a new event without name" do
     user, group = create_test_group
