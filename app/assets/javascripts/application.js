@@ -17,8 +17,26 @@
 //= require bootstrap-sprockets
 //= require moment 
 //= require fullcalendar
+var show_search = true;
 
-$("#search-group").hide();
+if($("#event-search-bar").val())(function()
+{
+    show_search = true;
+});
+
+if($("#group-search-bar").val())(function()
+{
+    show_search = false;
+});
+
+if (show_search) {
+    $("#search-group").hide();
+    $("#search-event").show();
+} else {
+    $("#search-group").show();
+    $("#search-event").hide();
+}
+
 $("#search-event-btn").click(function()
 {
     $("#search-event:hidden").show();
