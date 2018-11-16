@@ -18,3 +18,15 @@
 //= require moment 
 //= require fullcalendar
 
+$("#search-group").hide();
+$("#search-event-btn").click(function()
+{
+    $("#search-event:hidden").show();
+    $("#search-group").hide();
+});
+
+$("#search-group-btn").click(function()
+{
+    $("#search-group").show();
+    $("#search-event").hide();
+});

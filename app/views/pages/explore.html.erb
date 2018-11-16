@@ -1,5 +1,3 @@
-<h2>Pages#explore</h2>
-
 <p id="notice"><%= notice %></p>
 <body>
   <div class="container-fluid">
@@ -8,46 +6,107 @@
       </div>
 
       <main class="col-12 col-md-8 col-xl-10 bd-content">
-        <div class="input-group input-group-lg">
-          <div class="input-group-prepend">
-            <span class="input-group-text object-color" id="inputGroup-sizing-lg">Search</span>
+        <div id="search-event">
+          
+          <div>
+            <%= form_tag explore_path, id: "search-form", :method => "get" do %>  
+              <%= text_field_tag :search_event, params[:search_event], class: 'input-group input-group-lg btn', placeholder: "Type a event here...", id: "event-search-bar" %>
+            <% end %>
           </div>
-          <input type="text" class="form-control">
+          
+          <!--  
+          <div>
+            <%= form_tag explore_path, id: "search-form", :method => "get" do %>  
+              <%= text_field_tag :search_event, params[:search_event], class: 'input-group input-group-lg btn', placeholder: "Type a event here..." %>
+              <span class="input-group-text object-color"  id="inputGroup-sizing-lg">
+                <%= submit_tag "Search", class: 'input-group-prepend btn btn-default', name: nil %>
+              </span>
+            <% end %>
+          </div>
+
+
+
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text object-color" id="inputGroup-sizing-lg">Search</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Type a group here...">
+          </div>
+          -->
+          <% @events.each do |event| %>
+            <p>
+              <%= link_to event do %>
+                <div class="card object-color text-black card-link">
+                  <div class="card-body">
+                    <h3 class="card-title">
+                      <%= event.name %>
+                    </h3>
+                
+                    <h5 class="card-subtitle col mb-2 text-muted">
+                      <%= event.description %>
+                    </h5>
+                  
+                    <p class="card-text bg-white text-dark h-100 p-3">
+                      <u>WHEN? </u>
+                      <%= event.start_time %><br>
+                      <u>WHERE? </u>
+                      <%= event.location %><br>
+                      <u>WHO? </u>
+                      <%= event.location %><br>
+                      <%= link_to event.group.name, event.group %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+            </p>            
+          <% end %>
         </div>
 
-        <% @events.each do |event| %>
-          <p>
-            <%= link_to event do %>
-              <div class="card object-color text-black card-link">
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <%= event.name %>
-                  </h3>
-              
-                  <h5 class="card-subtitle col mb-2 text-muted">
-                    <%= event.description %>
-                  </h5>
-                
-                  <p class="card-text bg-white text-dark h-100 p-3">
-                    <u>WHEN? </u>
-                    <%= event.start_time %><br>
-                    <u>WHERE? </u>
-                    <%= event.location %><br>
-                    <u>WHO? </u>
-                    <%= event.location %><br>
-                    <%= link_to event.group.name, event.group %>
-                  </p>
-                </div>
-              </div>
+        <div id="search-group">
+          <div>
+            <%= form_tag explore_path, id: "search-form", :method => "get" do %>  
+              <%= text_field_tag :search_group, params[:search_group], class: 'input-group input-group-lg btn', placeholder: "Type a group here...", id: "group-search-bar"%>
             <% end %>
-          </p>            
-        <% end %>
+          </div>
+
+          <% @groups.each do |group| %>
+            <p>
+              <%= link_to group do %>
+                <div class="card object-color text-black card-link">
+                  <div class="card-body">
+                    <h3 class="card-title">
+                      <%= group.name %>
+                    </h3>
+                    <p class="card-text limit-height card-content">
+                      <%= group.description %>
+                    </p>
+                    <div class="row">
+                      <p class="col card-text card-content-bottom">
+                        category: <%=category_label group.category %>
+                      </p>
+                      <p class="col card-text card-content-bottom text-right">
+                        <%= group.users.count %> MEMBERS - <%= group.upcoming_events.count %> UPCOMMING EVENTS
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </p>
+          <% end %>
+        </div>  
       </main>
 
       <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-          <%= link_to 'Event Search', '#', class:"btn btn-primary btn-lg mt-2 button-content"%>
-          <%= link_to 'Group Search', '#', class:"btn btn-primary btn-lg mt-2 button-content"%>
+          <button type="button" class="btn btn-primary btn-lg button-content" id="search-event-btn" data-target="#search-event">
+            Event Search
+          </button>
+
+          <button type="button" class="btn btn-primary btn-lg mt-2 button-content" id="search-group-btn" data-target="#search-group">
+            Group Search
+          </button>
       </div>
     </div>
   </div>
 </body>
+
+<%= javascript_include_tag('application.js') %>

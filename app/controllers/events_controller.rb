@@ -31,6 +31,7 @@ class EventsController < ApplicationController
     return if enforce_login(events_path)
 
     @event = Event.new
+    @group = Group.find(params[:group_id])
   end
 
   # GET /events/1/edit
@@ -41,7 +42,7 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-
+    
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
