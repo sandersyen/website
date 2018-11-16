@@ -61,6 +61,8 @@ class EventsController < ApplicationController
     end
   end
 
+
+
   # DELETE /events/1
   def destroy
     return if enforce_permissions(@event)
