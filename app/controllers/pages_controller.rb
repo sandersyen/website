@@ -11,6 +11,15 @@ class PagesController < ApplicationController
   def terms
   end
 
-  def explore
+  def explore ()
+    @events = Event.all
+    @groups = Group.all
+    if (params[:search_event])
+      @events = Event.where("name LIKE :search_event OR description LIKE :search_event OR location LIKE :search_event", search_event: "%#{params[:search_event]}%")
+    end
+
+    if (params[:search_group])
+      @groups = Group.where("name LIKE :search_group OR description LIKE :search_group", search_group: "%#{params[:search_group]}%")
+    end
   end
 end
