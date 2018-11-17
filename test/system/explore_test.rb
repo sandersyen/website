@@ -4,12 +4,10 @@ class ExplorePage < ApplicationSystemTestCase
     test "view a public group" do
         user, group = create_test_group
         visit explore_path
-        #what are the default values with this ^ command. Want to check if this group can
-        #be viewed in the event page need to know title of group
     
         click_on 'Group Search'
         
-        #assert_selector "h3",text:<name of group created above>
+        assert_selector "h3",text:'Group1'
     end
 
     test "view a public event" do
