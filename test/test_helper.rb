@@ -16,7 +16,7 @@ class ActiveSupport::TestCase
 
     group = groups(:one)
     group.save
-    group.group_memberships.create(user: user)
+    group.group_memberships.create(user: user, role: 'ADMIN')
 
     event = events(:one)
     event.group = group
@@ -31,7 +31,7 @@ class ActiveSupport::TestCase
 
     group = groups(:one)
     group.save
-    group.group_memberships.create(user: user)
+    group.group_memberships.create(user: user, role: 'ADMIN')
 
     [user, group]
   end
