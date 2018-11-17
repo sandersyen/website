@@ -105,14 +105,14 @@ class GroupsTest < ApplicationSystemTestCase
     fill_in 'group_name', with: 'Group name'
     fill_in 'group_description', with: 'Group description'
     check 'group_is_public'
-    #need to fix this... doesn't work.
-    #select('2', :from => 'group_category_id')
+    # need to fix this... doesn't work.
+    select('2', :from => 'group_category_id')
     
-    #click_on 'Create Group'
+    click_on 'Create Group'
     
     
     
-    #assert_selector "#notice", text: "Group was successfully created."
+    assert_selector "#notice", text: "Group was successfully created."
   end
 
 end
