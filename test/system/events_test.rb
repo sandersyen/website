@@ -3,7 +3,9 @@ require "application_system_test_case"
 class EventsTest < ApplicationSystemTestCase
   test "add a new event" do
     user, group = create_test_group
-    visit events_path
+    
+    visit group_path(group)
+    
     #this should be changed in future just a hack around.
     click_on 'Create An Event'
 
@@ -67,7 +69,7 @@ class EventsTest < ApplicationSystemTestCase
   test "add a new event without name" do
     user, group = create_test_group
     
-    visit events_path
+    visit group_path(group)
     
     click_on 'Create An Event'
     
@@ -83,7 +85,7 @@ class EventsTest < ApplicationSystemTestCase
   test "add a new event with no description" do
     user, group = create_test_group
     
-    visit events_path
+    visit group_path(group)
     
     click_on 'Create An Event'
     
