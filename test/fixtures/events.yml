@@ -11,7 +11,7 @@ one:
 two:
   name: Event2
   description: Another description, this is for event 2.
-  start_time: 2018-10-22 11:17:43
-  end_time: 2018-10-22 11:17:43
+  start_time: 2018-11-22 11:17:43
+  end_time: 2018-11-22 11:50:43
   location: The location of event 2.
   group: two

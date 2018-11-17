@@ -25,7 +25,7 @@ class Event < ApplicationRecord
 
   # returns true if the user can edit this event
   def can_edit?(user)
-    group.users.include?(user)
+    group.can_edit?(user) # only let admins of a group edit an event
   end
 
   private
