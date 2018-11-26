@@ -6,7 +6,7 @@
       </div>
 
       <main class="col-12 col-md-8 col-xl-8 bd-content">
-        <div id="search-event">
+        <div id="search-event" class="collapse">
           <div class="form-group">
             <%= form_tag explore_path, id: "search-form", :method => "get" do %>  
               <%= text_field_tag :search_event, params[:search_event], class: 'form-control', placeholder: "Type a event here...", id: "event-search-bar" %>
@@ -61,7 +61,7 @@
           <% end %>
         </div>
 
-        <div id="search-group">
+        <div id="search-group" class="collapse">
           <div class="form-group">
             <%= form_tag explore_path, id: "search-form", :method => "get" do %>  
               <%= text_field_tag :search_group, params[:search_group], class: 'form-control', placeholder: "Type a group here...", id: "group-search-bar"%>
