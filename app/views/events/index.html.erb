@@ -3,9 +3,9 @@
 <body>
   <div class="container-fluid">
     <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
       </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
+      <main class="col-12 col-md-8 col-xl-8 bd-content">
         <% @events.each do |event| %>
           <p>
             <%= link_to event do %>
@@ -35,7 +35,7 @@
         <% end %>
   
       </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
         <!--
         <%= link_to 'Create An Event', new_event_path, class:"btn btn-primary btn-lg mt-2 button-content"%>        
         -->

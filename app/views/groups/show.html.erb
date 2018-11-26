@@ -1,9 +1,9 @@
 <body>
   <div class="container-fluid mt-3">
     <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
       </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
+      <main class="col-12 col-md-8 col-xl-8 bd-content">
         <div class="card object-color text-black card-link">
           <div class="card-body">
             <div class="row">
@@ -65,13 +65,13 @@
           </div>
         </div>
       </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
 
         <!--
         <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-2 "%>
         -->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg button-content" data-toggle="modal" data-target="#memberList">
+        <button type="button" class="btn btn-primary btn-lg button-content btn-block" data-toggle="modal" data-target="#memberList">
           Show Member List
         </button>
 
@@ -103,7 +103,7 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-primary btn-lg mt-2 button-content" data-toggle="modal" data-target="#inviteMember">
+        <button type="button" class="btn btn-primary btn-lg mt-2 button-content btn-block" data-toggle="modal" data-target="#inviteMember">
           Invite Members
         </button>
 
@@ -131,18 +131,18 @@
           </div>
         </div>
 
-        <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content"%>
+        <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
 
 
         <% if @group.users.include?(current_user) %>
-          <%= link_to 'Create An Event', new_event_path(group_id: @group.id), class:"btn btn-primary btn-lg mt-2 button-content"%>
-          <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content"%>
+          <%= link_to 'Create An Event', new_event_path(group_id: @group.id), class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
+          <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
          <% else %>
-          <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-2 button-content"%>
+          <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
         <% end %>
 
         <% if @group.can_edit?(current_user) %>
-          <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content"%>
+          <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content btn-block"%>
         <% end %>
       </div>
     </div>

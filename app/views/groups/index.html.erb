@@ -3,9 +3,9 @@
 <body>
   <div class="container-fluid">
     <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
       </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
+      <main class="col-12 col-md-8 col-xl-8 bd-content">
         <% current_user.groups.each do |group| %>
           <p>
             <%= link_to group do %>
@@ -31,9 +31,9 @@
           </p>
         <% end %>
       </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
         <p></p>
-        <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content"%>
+        <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content btn-block"%>
       </div>
     </div>
   </div>

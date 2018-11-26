@@ -2,10 +2,10 @@
 <body>
   <div class="container-fluid">
     <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
       </div>
 
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
+      <main class="col-12 col-md-8 col-xl-8 bd-content">
         <div id="search-event">
           <div class="form-group">
             <%= form_tag explore_path, id: "search-form", :method => "get" do %>  
@@ -95,12 +95,12 @@
         </div>  
       </main>
 
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-          <button type="button" class="btn btn-primary btn-lg button-content" id="search-event-btn" data-target="#search-event">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+          <button type="button" class="btn btn-primary btn-lg button-content btn-block" id="search-event-btn" data-target="#search-event">
             Event Search
           </button>
 
-          <button type="button" class="btn btn-primary btn-lg mt-2 button-content" id="search-group-btn" data-target="#search-group">
+          <button type="button" class="btn btn-primary btn-lg mt-2 button-content btn-block" id="search-group-btn" data-target="#search-group">
             Group Search
           </button>
       </div>
@@ -131,7 +131,7 @@
 
   $("#search-event-btn").click(function()
   {
-    $("#search-event:hidden").show();
+    $("#search-event").show();
     $("#search-group").hide();
   });
 
