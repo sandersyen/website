@@ -1,9 +1,9 @@
 <body>
   <div class="container-fluid mt-3">
     <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
       </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
+      <main class="col-12 col-md-8 col-xl-8 bd-content">
         <div class="card object-color text-black card-link">
           <div class="card-body">
             <div class="row">
@@ -40,8 +40,8 @@
           </div>
         </div>
       </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-        <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content"%>
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+        <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content btn-block"%>
       </div>
     </div>
   </div>  
