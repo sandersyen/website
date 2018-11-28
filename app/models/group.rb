@@ -15,6 +15,10 @@ class Group < ApplicationRecord
     is_admin?(user)
   end
 
+  def recent_posts
+    self.posts.order('created_at DESC')
+  end
+
   # returns all events for this group that start in the future
   def upcoming_events
     events.where('start_time > ?', Time.now)

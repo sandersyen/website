@@ -68,21 +68,6 @@
     
       <!-- TODO: DO the formatting of this -->
       <h2>Group Posts</h2>
-      <% if @group.posts.empty? %>
-        No posts.
-      <% else %>
-        <ul>
-          <% @group.posts.each do |post| %>
-            <li>
-              <%= user_label(post.user) %> said "<%= post.body %>"
-              <% if post.can_delete?(current_user) %>
-                <%= button_to 'Delete', delete_group_post_path(@group, group_post_id: post.id), method: :delete %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-
       <%= form_for(@post, url: create_group_post_path(@group)) do |form| %>
         <% if @post.errors.any? %>
           <div id="error_explanation">
@@ -100,6 +85,21 @@
         <%= form.text_area :body %>
         <%= form.submit 'Post' %>
       <% end %>
+      <% if @group.recent_posts.empty? %>
+        No posts.
+      <% else %>
+        <ul>
+          <% @group.recent_posts.each do |post| %>
+            <li>
+              <%= user_label(post.user) %> said "<%= post.body %>" at <%= post.created_at %>
+              <% if post.can_delete?(current_user) %>
+                <%= button_to 'Delete', delete_group_post_path(@group, group_post_id: post.id), method: :delete %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
     </main>
     <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
 
