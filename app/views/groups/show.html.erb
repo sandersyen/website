@@ -64,6 +64,42 @@
           <% end %>
         </div>
       </div>
+
+    
+      <!-- TODO: DO the formatting of this -->
+      <h2>Group Posts</h2>
+      <% if @group.posts.empty? %>
+        No posts.
+      <% else %>
+        <ul>
+          <% @group.posts.each do |post| %>
+            <li>
+              <%= user_label(post.user) %> said "<%= post.body %>"
+              <% if post.can_delete?(current_user) %>
+                <%= button_to 'Delete', delete_group_post_path(@group, group_post_id: post.id), method: :delete %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= form_for(@post, url: create_group_post_path(@group)) do |form| %>
+        <% if @post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+            <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form.hidden_field :user_id %>
+        <%= form.hidden_field :group_id %>
+        <%= form.text_area :body %>
+        <%= form.submit 'Post' %>
+      <% end %>
     </main>
     <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
 
@@ -132,7 +168,6 @@
       </div>
 
       <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
-
 
       <% if @group.users.include?(current_user) %>
         <%= link_to 'Create An Event', new_event_path(group_id: @group.id), class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>

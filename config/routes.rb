@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     get 'login/simulate', to: 'logins#simulate', as: 'simulate_login'
   end
 
+  post 'groups/:id/create_post', to: 'groups#create_post', as: 'create_group_post'
+  delete 'groups/:id/delete_post', to: 'groups#delete_post', as: 'delete_group_post'
+
   post 'groups/:id/join', to: 'groups#join_group', as: 'join_group'
   post 'groups/:id/leave', to: 'groups#leave_group', as: 'leave_group'
   post 'groups/:id/invite', to: 'groups#invite_member', as: 'invite_group_member'

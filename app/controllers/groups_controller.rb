@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [
     :show, :edit, :update, :destroy, :join_group, 
     :leave_group, :invite_member, :disinvite_member,
-    :accept_invite
+    :accept_invite, :create_post, :delete_post
   ]
 
   # GET /groups
@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   def show
     @invite = GroupInvite.find_by(user: current_user, group: @group)
+    @post = GroupPost.new(user: current_user, group: @group)
   end
 
   # GET /groups/new
@@ -42,6 +43,39 @@ class GroupsController < ApplicationController
     end
   end
 
+  # POST /groups/:id/post
+  def create_post
+    return if enforce_login(groups_path)
+
+    unless @group.is_member?(current_user)
+      redirect_to @group, alert: 'You must be a member of the group to do that.'
+      return
+    end
+
+    @post = GroupPost.new(post_params)
+
+    if @post.save
+      redirect_to @group
+    else
+      render :show
+    end
+  end
+
+  # DELETE /groups/:id/post
+  def delete_post
+    return if enforce_login(groups_path)
+
+    @post = GroupPost.find_by(id: params[:group_post_id])
+
+    # allow admins and original poster to delete
+    unless @post.can_delete?(current_user)
+      redirect_to @group, alert: 'You are not allowed to delete that message.'
+      return
+    end
+
+    @post.destroy
+    redirect_to @group, notice: 'Post was deleted successfully.'
+  end
 
   # POST /groups/:id/accept_invite
   def accept_invite
@@ -58,7 +92,6 @@ class GroupsController < ApplicationController
       redirect_to @group, notice: 'Unable to create membership, try again.'
     end
   end
-
 
   # POST /groups/:id/invite
   def invite_member
@@ -92,7 +125,6 @@ class GroupsController < ApplicationController
     end
   end
 
-
   # DELETE /groups/:id/invite
   def disinvite_member
     return if enforce_permissions(@group)
@@ -107,8 +139,6 @@ class GroupsController < ApplicationController
       redirect_to @group, alert: 'Unable to disinvite that user, were they not been invited?'
     end
   end
-
-
 
   # POST /groups/:id/join
   def join_group
@@ -155,7 +185,6 @@ class GroupsController < ApplicationController
     end
   end
 
-
   # PATCH/PUT /groups/1
   def update
     return if enforce_permissions(@group)
@@ -175,7 +204,6 @@ class GroupsController < ApplicationController
     redirect_to groups_path, notice: 'Group was successfully destroyed.'
   end
 
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -185,6 +213,10 @@ class GroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name, :description, :category_id, :is_public)
+    end
+
+    def post_params
+      params.require(:group_post).permit(:user_id, :group_id, :body)
     end
 
     def enforce_permissions(group)

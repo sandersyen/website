@@ -4,6 +4,7 @@ class Group < ApplicationRecord
   has_many :group_memberships, dependent: :destroy
   has_many :users, through: :group_memberships, dependent: :destroy
   has_many :group_invites, dependent: :destroy
+  has_many :posts, class_name: 'GroupPost', dependent: :destroy
 
   validates :name, length: { in: 3..100 }
   validates :description, length: { maximum: 1000 }
