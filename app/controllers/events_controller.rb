@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     return if enforce_login(home_path)
     @events = current_user.upcoming_events
+    @past_events = current_user.past_events
     
     respond_to do |format|
       format.html

@@ -12,6 +12,11 @@ class User < ApplicationRecord
     events.where('start_time > ?', Time.now)
   end
 
+  # returns all events for this user that start in the future
+  def past_events
+    events.where('start_time < ?', Time.now)
+  end
+
   private
     def destroy_notifs
       Notification.where(target: self).or(Notification.where(actor: self)).destroy_all

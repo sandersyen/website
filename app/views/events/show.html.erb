@@ -1,48 +1,47 @@
-<body>
-  <div class="container-fluid mt-3">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-      </div>
-      <main class="col-12 col-md-8 col-xl-8 bd-content">
-        <div class="card object-color text-black card-link">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">
-                <h3 class="card-title">
-                  <%= @event.name %>
-                </h3>
-              </div>
-              <div class="col text-right text-up">
-                <%= link_to edit_event_path(@event), class: 'btn btn-default icon-effect' do %>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                  Edit
-                <% end %>
-              </div>
-            </div>
-            <div class="row">
-              <h5 class="card-subtitle col mb-2 text-muted">
-                <%= @event.description %>
-              </h5>
-            </div>
 
-            <div class="row">
-              <div class="col-sm-12 col-md-12 eq-height">
-                <p class="card-text bg-white text-dark h-100 p-3">
-                  <u>GROUP: </u><br>
-                  <%= link_to @event.group.name, @event.group %><br>
-                  <u>WHEN?</u><br>
-                  <%= @event.start_time %><br>
-                  <u>WHERE?</u><br>
-                  <%= @event.location %><br>
-                </p>
-              </div>
+<div class="container-fluid mt-3">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+    </div>
+    <main class="col-12 col-md-8 col-xl-8 bd-content">
+      <div class="card object-color text-black card-link">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h3 class="card-title">
+                <%= @event.name %>
+              </h3>
+            </div>
+            <div class="col text-right text-up">
+              <%= link_to edit_event_path(@event), class: 'btn btn-default icon-effect' do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+                Edit
+              <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="card-subtitle col mb-2 text-muted">
+              <%= @event.description %>
+            </h5>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-12 eq-height">
+              <p class="card-text bg-white text-dark h-100 p-3">
+                <u>GROUP: </u><br>
+                <%= link_to @event.group.name, @event.group %><br>
+                <u>WHEN?</u><br>
+                <%= @event.start_time %><br>
+                <u>WHERE?</u><br>
+                <%= @event.location %><br>
+              </p>
             </div>
           </div>
         </div>
-      </main>
-      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-        <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content btn-block"%>
       </div>
+    </main>
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+      <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content btn-block"%>
     </div>
-  </div>  
-</body> 
+  </div>
+</div>
