@@ -3,8 +3,13 @@ class LoginsController < ApplicationController
   end
 
   def simulate
-    user = User.new(name: 'Username', email: 'user@email.com', avatar_url: 'http://google.com/avatar.png', google_id: 'google-id')
-    user.save
+    user_id = params[:user_id]
+    if user_id.nil?
+      user = User.new(name: 'Username', email: 'user@email.com', avatar_url: 'http://google.com/avatar.png', google_id: 'google-id')
+      user.save
+    else
+      user = User.find(user_id)
+    end
     session[:user_id] = user.id
     redirect_to home_path
   end

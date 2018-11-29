@@ -35,4 +35,22 @@ class ActiveSupport::TestCase
 
     [user, group]
   end
+
+  def simulate_login_user_one
+    user = users(:one)
+    user.save
+
+    simulate_login_as(user)
+  end
+
+  def simulate_login_user_two
+    user = users(:two)
+    user.save
+
+    simulate_login_as(user)
+  end
+
+  def simulate_login_as(user)
+    visit simulate_login_path(user_id: user.id)
+  end
 end

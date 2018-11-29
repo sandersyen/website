@@ -1,6 +1,15 @@
 require "application_system_test_case"
 
 class GroupsTest < ApplicationSystemTestCase
+  test "simulate two user logins" do
+    simulate_login_user_one
+    find('.img-circular').hover
+    click_on 'Sign Out'
+    simulate_login_user_two
+    find('.img-circular').hover
+    click_on 'Sign Out'
+  end
+
   test "add a new group" do
     visit simulate_login_path
 
