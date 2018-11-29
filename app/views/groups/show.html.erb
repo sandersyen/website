@@ -173,8 +173,6 @@
         </div>
       </div>
 
-      <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
-
       <% if @group.users.include?(current_user) %>
         <%= link_to 'Create An Event', new_event_path(group_id: @group.id), class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
         <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
