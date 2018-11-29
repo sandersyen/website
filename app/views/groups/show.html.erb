@@ -21,7 +21,7 @@
           </div>
           <div class="row">
             <h5 class="card-subtitle col mb-2 text-muted">
-            CONTACT: <%= 123 %>
+            CONTACT: <%= user_label @group.admins.first.user %> <!-- NOTE THIS IS ONLY SHOWING ONE ADMIN RIGHT NOW! -->
             </h5>
             <h5 class="card-subtitle col card-content-bottom text-right text-muted">
               <%= @group.users.count %> MEMBERS
