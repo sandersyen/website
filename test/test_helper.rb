@@ -10,29 +10,16 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  def create_test_event
-    visit simulate_login_path
-    user = User.last
-
-    group = groups(:one)
-    group.save
-    group.group_memberships.create(user: user, role: 'ADMIN')
-
-    event = events(:one)
-    event.group = group
-    event.save
-
-    event
+  def simulate_login_user_one
+    simulate_login_as(users(:one))
   end
 
-  def create_test_group
-    visit simulate_login_path
-    user = User.last
+  def simulate_login_user_two
+    simulate_login_as(users(:two))
+  end
 
-    group = groups(:one)
-    group.save
-    group.group_memberships.create(user: user, role: 'ADMIN')
-
-    [user, group]
+  def simulate_login_as(user)
+    visit simulate_login_path(user_id: user.id)
+    user
   end
 end
