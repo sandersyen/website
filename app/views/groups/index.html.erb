@@ -18,7 +18,12 @@
                 </p>
                 <div class="row">
                   <p class="col card-text card-content-bottom">
-                    category: <%=category_label group.category %>
+                    Contact: <%= group.admins.first.user.name %> <!-- ONLY SHOWING FIRST ADMIN! -->
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="col card-text card-content-bottom">
+                    Category: <%=category_label group.category %>
                   </p>
                   <p class="col card-text card-content-bottom text-right">
                     <%= group.users.count %> MEMBERS - <%= group.upcoming_events.count %> UPCOMING EVENTS
