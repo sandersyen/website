@@ -1,44 +1,41 @@
-<p id="notice"><%= notice %></p>
+<h2>My Groups</h2>
 
-<h2>Groups</h2>
-
-<body>
-  <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-      </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
-        <% current_user.groups.each do |group| %>
-          <p>
-            <%= link_to group do %>
-              <div class="card object-color text-black card-link">
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <%= group.name %>
-                  </h3>
-                  <p class="card-text limit-height card-content">
-                    <%= group.description %>
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+    </div>
+    <main class="col-12 col-md-8 col-xl-8 bd-content">
+      <% current_user.groups.each do |group| %>
+        <p>
+          <%= link_to group do %>
+            <div class="card object-color text-black card-link">
+              <div class="card-body">
+                <h3 class="card-title">
+                  <%= group.name %>
+                </h3>
+                <p class="card-text limit-height card-content">
+                  <%= group.description %>
+                </p>
+                <div class="row">
+                  <p class="col card-text card-content-bottom">
+                    category: <%=category_label group.category %>
                   </p>
-                  <div class="row">
-                    <p class="col card-text card-content-bottom">
-                      category: <%=category_label group.category %>
-                    </p>
-                    <p class="col card-text card-content-bottom text-right">
-                      <%= group.users.count %> MEMBERS - <%= group.events.count %> UPCOMING EVENTS
-                    </p>
-                  </div>
+                  <p class="col card-text card-content-bottom text-right">
+                    <%= group.users.count %> MEMBERS - <%= group.upcoming_events.count %> UPCOMING EVENTS
+                  </p>
                 </div>
               </div>
-            <% end %>
-          </p>
-        <% end %>
-      </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-          <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content"%>
-      </div>
+            </div>
+          <% end %>
+        </p>
+      <% end %>
+    </main>
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+      <p></p>
+      <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content btn-block"%>
     </div>
   </div>
-</body>
+</div>
 
 
 

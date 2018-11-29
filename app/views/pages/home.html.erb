@@ -1,10 +1,42 @@
-<div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
+<!-- Mini-script for Calendar -->
+<% content_for :initiate_calendar do %>
+  <script type="text/javascript">
+    $('#calendar').fullCalendar({
+      events: {
+        url: '<%= events_path(format: :json) %>'
+      }
+    });
+  </script>
+<% end %>
 
-<h2>Pages#home</h2>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- Add some space at the bottom of the Calendar -->
+<style type="text/css">
+	#calendar {
+		padding-bottom: 10%
+	}
+
+</style>
+
+
+<% if logged_in? %> <!–– differs the look of the home page based on if user is logged in -->
+  <h2>Events Calendar</h2>
+  <div id = "calendar">
+    <%= yield :initiate_calendar %>
+  </div>
+<% else %>
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to Chrono!</h1>
+    <p class="lead">Please sign in with a Google account to enjoy the features of Chrono!</p>
+    <hr class="my-4">
+    <p>This jumbotron element is a placeholder for when users are not logged in. When they are, the calendar appears.</p>
+    <!-- %><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+    <div class= "flexVerticalItem">
+      <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+

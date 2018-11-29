@@ -3,7 +3,24 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    return if enforce_login(home_path)
+    @events = current_user.upcoming_events
+    @past_events = current_user.past_events
+    
+    respond_to do |format|
+      format.html
+      format.json do
+        json = @events.map{|event| {
+          id: event.id,
+          title: event.name,
+          description: event.description,
+          start: event.start_time,
+          end: event.end_time,
+          url: event_path(event)
+        }}
+        render json: json
+      end
+    end
   end
 
   # GET /events/1
@@ -15,6 +32,7 @@ class EventsController < ApplicationController
     return if enforce_login(events_path)
 
     @event = Event.new
+    @group = Group.find(params[:group_id])
   end
 
   # GET /events/1/edit
@@ -25,7 +43,7 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-
+    
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -43,6 +61,8 @@ class EventsController < ApplicationController
       render :edit
     end
   end
+
+
 
   # DELETE /events/1
   def destroy

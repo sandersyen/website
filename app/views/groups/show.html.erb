@@ -1,203 +1,184 @@
-<p id="notice"><%= notice %></p>
 
-<body>
-  <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-      </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
-        <div class="card object-color text-black card-link">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">
-                <h3 class="card-title">
-                  <%= @group.name %>
-                </h3>
-              </div>
-              <div class="col text-right text-up">
-                <%= link_to edit_group_path(@group), class: 'btn btn-default icon-effect' do %>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                  Edit
-                <% end %>
-              </div>
+<div class="container-fluid mt-3">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+    </div>
+    <main class="col-12 col-md-8 col-xl-8 bd-content">
+      <div class="card object-color text-black card-link">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h3 class="card-title">
+                <%= @group.name %>
+              </h3>
             </div>
-            <div class="row">
-              <h5 class="card-subtitle col mb-2 text-muted">
-              CONTACT: <%= 123 %>
-              </h5>
-              <h5 class="card-subtitle col card-content-bottom text-right text-muted">
-                <%= @group.users.count %> MEMBERS
-              </h5>
+            <div class="col text-right text-up">
+              <%= link_to edit_group_path(@group), class: 'btn btn-default icon-effect', id:"test" do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+                Edit
+              <% end %>
             </div>
+          </div>
+          <div class="row">
+            <h5 class="card-subtitle col mb-2 text-muted">
+            CONTACT: <%= 123 %>
+            </h5>
+            <h5 class="card-subtitle col card-content-bottom text-right text-muted">
+              <%= @group.users.count %> MEMBERS
+            </h5>
+          </div>
 
-            <p class="card-text bg-light text-dark p-3">
-              <u>DESCRIPTION:</u>
-              <%= @group.description %>
-            </p>
+          <p class="card-text bg-light text-dark p-3">
+            <u>DESCRIPTION:</u>
+            <%= @group.description %>
+          </p>
 
-            <div class="row">
-              <% if @group.events.each do |event| %>
-                <div class="col-sm-12 col-md-6 eq-height">
-                  <p class="card-text bg-white text-dark h-100 p-3">
-                    <u>UPCOMING EVENT:</u><br>
-                    <%= link_to event.name, event %><br>
-                    <u>WHEN?</u><br>
-                    <%= link_to event.start_time, event %><br>
-                    <u>WHERE?</u><br>
-                    <%= link_to event.location, event %><br>
-                    <u>DESCRIPTION?</u><br>
-                    <%= link_to event.description, event %><br>
-                  </p>
-                </div>
-              <%end%>
-            </div>
-
+          <div class="row">
             <% if @group.events.each do |event| %>
-            <% end.empty? %>
-              <h5 align="middle"><b> No Events </b></h5>
-            <% end%>
-            <% end%>
-
+              <div class="col-sm-12 col-md-6 eq-height group-event-row">
+                <p class="card-text bg-white text-dark h-100 p-3">
+                  <u>UPCOMING EVENT:</u><br>
+                  <%= link_to event.name, event %><br>
+                  <u>WHEN?</u><br>
+                  <%= link_to event.start_time, event %><br>
+                  <u>WHERE?</u><br>
+                  <%= link_to event.location, event %><br>
+                  <u>DESCRIPTION?</u><br>
+                  <%= link_to event.description, event %><br>
+                </p>
+              </div>
+            <%end%>
           </div>
+
+          <% if @group.events.each do |event| %>
+          <% end.empty? %>
+            <h5 align="middle"><b> No Events </b></h5>
+          <% end%>
+          <% end%>
+        
+
+          <!-- TODO: Move this somewhere else? -->
+          <% if @invite.presence %>
+            You have been invited to this group!
+            <%= button_to 'Accept Invite', accept_group_invite_path(@group), method: :post %>
+          <% end %>
         </div>
-      </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-
-        <!--
-        <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-2 "%>
-        -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg mt-2  button-content" data-toggle="modal" data-target="#memberList">
-          Show Member List
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="memberList" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Members</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <ul>
-                <% if @group.users.each do |user| %>
-                  <li>
-                    <%= user.name %>
-                  </li>
-                <% end.empty? %>
-                  No users
-                <% end %>
-                </ul>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button type="button" class="btn btn-primary btn-lg mt-3 button-content" data-toggle="modal" data-target="#inviteMember">
-          Invite Members
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="inviteMember" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Invite by email:</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-
-                <%= form_tag invite_group_url do %>
-                <%= label_tag :email %>
-                <%= text_field_tag :email %>
-                <%= submit_tag "Invite", class: "btn btn-primary btn-lg mt-2 button-content"%>
-                <% end %>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content"%>
-
-
-        <% if @group.users.include?(current_user) %>
-          <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content"%>
-         <% else %>
-          <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-3 button-content"%>
-        <% end %>
-
-
-        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content"%>
       </div>
+
+    
+      <!-- TODO: DO the formatting of this -->
+      <h2>Group Posts</h2>
+      <%= form_for(@post, url: create_group_post_path(@group)) do |form| %>
+        <% if @post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+            <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form.hidden_field :user_id %>
+        <%= form.hidden_field :group_id %>
+        <%= form.text_area :body %>
+        <%= form.submit 'Post' %>
+      <% end %>
+      <% if @group.recent_posts.empty? %>
+        No posts.
+      <% else %>
+        <ul>
+          <% @group.recent_posts.each do |post| %>
+            <li>
+              <%= user_label(post.user) %> said "<%= post.body %>" at <%= post.created_at %>
+              <% if post.can_delete?(current_user) %>
+                <%= button_to 'Delete', delete_group_post_path(@group, group_post_id: post.id), method: :delete %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+    </main>
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+
+      <!--
+      <%= link_to 'Show Member List', new_group_path, class:"btn btn-primary btn-lg mt-2 "%>
+      -->
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg button-content btn-block" data-toggle="modal" data-target="#memberList">
+        Show Member List
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="memberList" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Members</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ul>
+              <% if @group.users.each do |user| %>
+                <li>
+                  <%= user_label user %>
+                </li>
+              <% end.empty? %>
+                No users
+              <% end %>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-lg mt-2 button-content btn-block" data-toggle="modal" data-target="#inviteMember">
+        Invite Members
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="inviteMember" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Invite by email:</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= form_tag invite_group_member_path do %>
+                <%= label_tag :email %>
+                <%= text_field_tag :email, nil, id: :invite_member_email, class: 'form-control' %>
+                <%= submit_tag "Invite", class: "btn btn-primary btn-lg mt-2 button-content"%>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
+
+      <% if @group.users.include?(current_user) %>
+        <%= link_to 'Create An Event', new_event_path(group_id: @group.id), class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
+        <%= link_to 'Leave Group', leave_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
+        <% else %>
+        <%= link_to 'Join Group', join_group_path(@group), method: :post, class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
+      <% end %>
+
+      <% if @group.can_edit?(current_user) %>
+        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary mt-2 btn-lg button-content btn-block"%>
+      <% end %>
     </div>
   </div>
-</body>
-
-
-
-
-<!--
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @group.description %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= category_label @group.category %>
-</p>
-
-<p>
-  <strong>Is public:</strong>
-  <%= @group.is_public %>
-</p>
-
-<p>
-  <strong>Events:</strong>
-</p>
-<ul>
-<% if @group.events.each do |event| %>
-  <li>
-    <%= link_to event.name, event %>
-  </li>
-<% end.empty? %>
-  No events
-<% end%>
-
-</ul>
-
-<p>
-  <strong>Users:</strong>
-</p>
-<ul>
-<% if @group.users.each do |user| %>
-  <li>
-    <%= user_label(user) %>
-  </li>
-<% end.empty? %>
-  No users
-<% end %>
-</ul>
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
-
--->
+</div>

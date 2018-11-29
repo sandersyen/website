@@ -1,45 +1,20 @@
-<p id="notice"><%= notice %></p>
+<h2>My Events</h2>
 
-<h2>Events</h2>
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+    </div>
+    <main class="col-12 col-md-8 col-xl-8 bd-content">
+      <h3>Upcoming Events</h3>
+      <%= render 'list', events: @events %>
 
-<body>
-  <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-      </div>
-      <main class="col-12 col-md-8 col-xl-10 bd-content">
-        <% @events.each do |event| %>
-          <p>
-            <%= link_to event do %>
-              <div class="card object-color text-black card-link">
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <%= event.name %>
-                  </h3>
-              
-                  <h5 class="card-subtitle col mb-2 text-muted">
-                    <%= event.description %>
-                  </h5>
-                
-                  <p class="card-text bg-white text-dark h-100 p-3">
-                    <u>WHEN? </u>
-                    <%= event.start_time %><br>
-                    <u>WHERE? </u>
-                    <%= event.location %><br>
-                    <u>WHO? </u>
-                    <%= event.location %><br>
-                    <%= link_to event.group.name, event.group %>
-                  </p>
-                </div>
-              </div>
-            <% end %>
-          </p>            
-        <% end %>
-  
-      </main>
-      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
-          <%= link_to 'Create An Event', new_event_path, class:"btn btn-primary btn-lg button-content"%>
-      </div>
+      <h3>Past Events</h3>
+      <%= render 'list', events: @past_events %>
+    </main>
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+      <!--
+      <%= link_to 'Create An Event', new_event_path, class:"btn btn-primary btn-lg mt-2 button-content"%>        
+      -->
     </div>
   </div>
-</body>
+</div>
