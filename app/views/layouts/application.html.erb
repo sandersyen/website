@@ -92,10 +92,10 @@
             <div class="flexVerticalItem" id = "userAvatar">
               <div class= "flexHorizontalContainer">
                 <div>
-                  <ul id = "nav-ul">
+                  <ul id = "nav-ul" class="user">
                     <li id = "nav-li">
                       <%= image_tag current_user.avatar_url,:class=> "img-circular"%>
-                        <ul class="dropdown">
+                        <ul class="dropdown user">
                           <li id="nav-li"><a  id="nav-a" href="#"><%= button_to 'Sign Out', logout_path, method: :delete, class:"btn btn-md btn-primary mr-sm-2 nav-button" %></a></li>
                         </ul>
                     </li>
