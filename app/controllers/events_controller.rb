@@ -1,12 +1,11 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :invite_member, :edit, :update, :destroy]
 
   # GET /events
   def index
     return if enforce_login(home_path)
     @events = current_user.upcoming_events
-    @past_events = current_user.past_events
-    
+
     respond_to do |format|
       format.html
       format.json do
@@ -43,7 +42,7 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-    
+
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -62,7 +61,36 @@ class EventsController < ApplicationController
     end
   end
 
+  def invite_member
+    return if enforce_permissions(@event)
 
+    invited_user = User.find_by_email(params[:email])
+    invite = EventInvite.new(event: @event, user: invited_user)
+    existing_invite = EventInvite.find_by(event: @event, user: invited_user)
+
+    if invited_user.nil?
+      redirect_to @event, alert: 'Unable to find that user.'
+      return
+    end
+
+    if @event.users.include?(invited_user)
+      redirect_to @event, alert: 'That user is already in the event.'
+      return
+    end
+
+    unless existing_invite.nil?
+      redirect_to @event, alert: 'That user has already been invite to the group.'
+      return
+    end
+
+    if invite.save
+      invite.create_notif
+      redirect_to @event, notice: "You have invited #{invited_user.name} to the event."
+      UserMailer.group_invite(invited_user.email).deliver_now
+    else
+      redirect_to @event, alert: 'Unable to invite that user.'
+    end
+  end
 
   # DELETE /events/1
   def destroy

@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   delete 'groups/:id/invite', to: 'groups#disinvite_member', as: 'disinvite_group_member'
   post 'groups/:id/accept_invite', to: 'groups#accept_invite', as: 'accept_group_invite'
 
+  post 'events/:id/invite', to: 'events#invite_member', as: 'invite_event_member'
+
   resources :events
   resources :groups
 
   get 'notifications', to: 'notifications#index', as: 'notifications'
   delete 'notifications/:id', to: 'notifications#destroy', as: 'dismiss_notification'
-  
+
   get 'pages/help', as: 'help'
   get 'pages/about', as: 'about'
   get 'pages/terms', as: 'terms'

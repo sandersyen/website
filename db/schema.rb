@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_013948) do
+ActiveRecord::Schema.define(version: 2018_11_29_021100) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "event_invites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_invites_on_event_id"
+    t.index ["user_id"], name: "index_event_invites_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -67,9 +76,6 @@ ActiveRecord::Schema.define(version: 2018_11_29_013948) do
     t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-    t.index ["category_id"], name: "index_groups_on_category_id"
-=======
     t.boolean "is_viewable"
     t.index ["category_id"], name: "index_groups_on_category_id"
   end
@@ -86,7 +92,6 @@ ActiveRecord::Schema.define(version: 2018_11_29_013948) do
     t.datetime "updated_at", null: false
     t.index ["notif_type", "user_id", "actor_id", "actor_type", "target_id", "target_type"], name: "notifications_index", unique: true
     t.index ["user_id"], name: "index_notifications_on_user_id"
->>>>>>> upstream/master
   end
 
   create_table "users", force: :cascade do |t|
