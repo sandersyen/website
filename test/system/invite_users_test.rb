@@ -11,8 +11,6 @@ class InviteUsersTest < ApplicationSystemTestCase
         fill_in 'invite_member_email', with: user2.email
         click_on 'Invite'
         
-        assert_selector"#notice", text: "You have invited " + user2.name + " to the group."
-        
         find('.nav-link.dropdown-toggle').click
         click_on 'Sign Out'
         
