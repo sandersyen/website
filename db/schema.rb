@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_201635) do
+ActiveRecord::Schema.define(version: 2018_11_29_013948) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_201635) do
     t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_viewable"
     t.index ["category_id"], name: "index_groups_on_category_id"
   end
 
