@@ -12,7 +12,6 @@ class EventsTest < ApplicationSystemTestCase
 
     fill_in 'event_name', with: 'Event name'
     fill_in 'event_description', with: 'Event description'
-    select group.name, from: 'event_group_id'
 
     click_on 'Create Event'
 
@@ -50,11 +49,10 @@ class EventsTest < ApplicationSystemTestCase
     
     #fill_in 'event_name', with: 'Event name'
     fill_in 'event_description', with: 'Event description'
-    select group.name, from: 'event_group_id'
-    
+
     click_on 'Create Event'
     
-    assert_selector "h2", text: "1 error prohibited this event from being saved:"
+    assert page.has_content?('error')
   end
 
   test "add a new event with no description" do
@@ -66,8 +64,6 @@ class EventsTest < ApplicationSystemTestCase
     click_on 'Create An Event'
     
     fill_in 'event_name', with: 'Event name'
-    #fill_in 'event_description', with: 'Event description'
-    select group.name, from: 'event_group_id'
     
     click_on 'Create Event'
     

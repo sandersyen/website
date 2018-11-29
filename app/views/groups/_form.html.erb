@@ -1,9 +1,8 @@
 <%= form_with(model: group, local: true) do |form| %>
   <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <b><%= pluralize(group.errors.count, "error") %> occurred:</b>
+      <ul style="margin: 0">
       <% group.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

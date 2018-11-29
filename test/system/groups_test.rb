@@ -58,7 +58,7 @@ class GroupsTest < ApplicationSystemTestCase
     
     click_on 'Create Group'
     
-    assert_selector "h2", text: "1 error prohibited this group from being saved:"
+    assert page.has_content?('error')
   end
 
   test "test no group description of event" do

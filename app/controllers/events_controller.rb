@@ -31,8 +31,16 @@ class EventsController < ApplicationController
   def new
     return if enforce_login(events_path)
 
-    @event = Event.new
     @group = Group.find(params[:group_id])
+    @event = Event.new(group: @group)
+
+    # default new event times
+    @event.start_time = (Time.now + 1.hour + 1.day).beginning_of_hour
+    @event.end_time = @event.start_time + 2.hours
+
+    if @group.nil?
+      redirect_to home_path, alert: 'Unable to find that group.'
+    end
   end
 
   # GET /events/1/edit
@@ -90,6 +98,14 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
+      times = params[:event][:times].split(' - ')
+
+      start_time = Time.strptime(times[0], '%m/%d/%Y %I:%M %P')
+      end_time = Time.strptime(times[1], '%m/%d/%Y %I:%M %P')
+
+      params[:event][:start_time] = start_time
+      params[:event][:end_time] = end_time
+
       params.require(:event).permit(:name, :description, :start_time, :end_time, :location, :group_id, :is_viewable )
     end
 

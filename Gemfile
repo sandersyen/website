@@ -13,6 +13,8 @@ group :development, :test do
   gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
 end
 
+gem 'browser-timezone-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 # Use Puma as the app server
@@ -29,6 +31,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use Full calendar for Event calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
+
 
 group :development, :test do
   gem 'simplecov', require: false

@@ -17,6 +17,10 @@
 //= require bootstrap-sprockets
 //= require moment 
 //= require fullcalendar
+//= require daterangepicker
+//= require js.cookie
+//= require jstz
+//= require browser_timezone_rails/set_time_zone
 var show_search = true;
 
 if($("#event-search-bar").val())(function()
