@@ -13,7 +13,7 @@ class InviteUsersTest < ApplicationSystemTestCase
         
         assert_selector"#notice", text: "You have invited " + user2.name + " to the group."
         
-        find('.img-circular').hover
+        find('.nav-link.dropdown-toggle').click
         click_on 'Sign Out'
         
         simulate_login_as(user2)

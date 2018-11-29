@@ -1,45 +1,5 @@
 
-<div class="container-fluid mt-3">
-  <div class="row flex-xl-nowrap">
-    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-    </div>
-    <main class="col-12 col-md-8 col-xl-8 bd-content">
-      <div class="card object-color text-black card-link">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <h3 class="card-title">
-                <%= @event.name %>
-              </h3>
-            </div>
-            <div class="col text-right text-up">
-              <%= link_to edit_event_path(@event), class: 'btn btn-default icon-effect' do %>
-                <span class="glyphicon glyphicon-pencil"></span>
-                Edit
-              <% end %>
-            </div>
-          </div>
-          <h5 class="card-subtitle mb-2 text-muted">
-            Description:
-            <%= @event.description %>
-          </h5>
-
-          <p class="card-text bg-white text-dark h-100 p-3">
-            <b><i>When?</i></b><br>
-            <%= @event.start_time %><br>
-            <b><i>Where?</i></b><br>
-            <%= @event.location %><br>
-            <b><i>Publicly Visible?</i></b><br>
-            <%= @event.is_viewable %><br> <!-- How can we make this a condition? i.e if true then say "Yes" ??? -->
-            <b><i>Group:</i></b><br>
-            <%= link_to @event.group.name, @event.group %><br>
-
-          </p>
-        </div>
-      </div>
-    </main>
-    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-      <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-lg button-content btn-block"%>
-    </div>
-  </div>
+<div class="container">
+  <br/>
+  <%= render 'card', event: @event, summary: false %>
 </div>

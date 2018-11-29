@@ -17,26 +17,22 @@
 
 </style>
 
-
-<% if logged_in? %> <!–– differs the look of the home page based on if user is logged in -->
-  <h2>Events Calendar</h2>
-  <div id = "calendar">
-    <%= yield :initiate_calendar %>
-  </div>
-<% else %>
-  <div class="jumbotron">
-    <h1 class="display-4">Welcome to Chrono!</h1>
-    <p class="lead">Please sign in with a Google account to enjoy the features of Chrono!</p>
-    <hr class="my-4">
-    <p>This jumbotron element is a placeholder for when users are not logged in. When they are, the calendar appears.</p>
-    <!-- %><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
-    <div class= "flexVerticalItem">
-      <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
+<div class="container">
+  <br/>
+  <% if logged_in? %>
+    <div id = "calendar">
+      <%= yield :initiate_calendar %>
     </div>
-  </div>
-<% end %>
-
-
-
-
-
+  <% else %>
+    <div class="jumbotron">
+      <h1 class="display-4">Welcome to Chrono!</h1>
+      <p class="lead">Please sign in with a Google account to enjoy the features of Chrono!</p>
+      <hr class="my-4">
+      <p>This jumbotron element is a placeholder for when users are not logged in. When they are, the calendar appears.</p>
+      <!-- %><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+      <div class= "flexVerticalItem">
+        <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>

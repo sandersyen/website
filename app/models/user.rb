@@ -9,12 +9,12 @@ class User < ApplicationRecord
 
   # returns all events for this user that start in the future
   def upcoming_events
-    events.where('start_time > ?', Time.now)
+    events.where('start_time > ?', Time.now).order(:start_time)
   end
 
   # returns all events for this user that start in the future
   def past_events
-    events.where('start_time < ?', Time.now)
+    events.where('start_time < ?', Time.now).order(:start_time)
   end
 
   private

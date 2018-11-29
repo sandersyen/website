@@ -14,13 +14,17 @@
  *= require_self
  *= require fullcalendar
  */
-
-/* Custom bootstrap variables must be set or imported *before* bootstrap.*/
+@import "bootswatch/sandstone/variables";
 @import "bootstrap";
+@import "bootswatch/sandstone/bootswatch";
 
-.nav-logo {
-    width: 290px;
-    height: 90px;
+
+body {
+    font-size: 16px !important;
+}
+
+.navbar-brand img {
+    height: 48px;
 }
 
 .nav-button {
@@ -76,8 +80,8 @@
 }
 
 .img-circular{
- width: 43px;
- height: 43px;
+ width: 32px;
+ height: 32px;
  border-radius: 50%;
 }
 

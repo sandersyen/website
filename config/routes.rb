@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   get 'notifications', to: 'notifications#index', as: 'notifications'
   delete 'notifications/:id', to: 'notifications#destroy', as: 'dismiss_notification'
   
-  get 'pages/help', as: 'help'
-  get 'pages/about', as: 'about'
-  get 'pages/terms', as: 'terms'
-  get 'pages/explore', as: 'explore'
+  get '/help', to: 'pages#help', as: 'help'
+  get '/about', to: 'pages#about', as: 'about'
+  get '/terms', to: 'pages#terms', as: 'terms'
+  get '/explore', to: 'pages#explore', as: 'explore'
 
   root 'pages#home', as: 'home'
   get 'login', to: 'logins#new', as: :login
