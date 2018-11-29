@@ -19,24 +19,22 @@
               <% end %>
             </div>
           </div>
-          <div class="row">
-            <h5 class="card-subtitle col mb-2 text-muted">
-              <%= @event.description %>
-            </h5>
-          </div>
+          <h5 class="card-subtitle mb-2 text-muted">
+            Description:
+            <%= @event.description %>
+          </h5>
 
-          <div class="row">
-            <div class="col-sm-12 col-md-12 eq-height">
-              <p class="card-text bg-white text-dark h-100 p-3">
-                <u>GROUP: </u><br>
-                <%= link_to @event.group.name, @event.group %><br>
-                <u>WHEN?</u><br>
-                <%= @event.start_time %><br>
-                <u>WHERE?</u><br>
-                <%= @event.location %><br>
-              </p>
-            </div>
-          </div>
+          <p class="card-text bg-white text-dark h-100 p-3">
+            <b><i>When?</i></b><br>
+            <%= @event.start_time %><br>
+            <b><i>Where?</i></b><br>
+            <%= @event.location %><br>
+            <b><i>Publicly Visible?</i></b><br>
+            <%= @event.is_viewable %><br> <!-- How can we make this a condition? i.e if true then say "Yes" ??? -->
+            <b><i>Group:</i></b><br>
+            <%= link_to @event.group.name, @event.group %><br>
+
+          </p>
         </div>
       </div>
     </main>
