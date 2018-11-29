@@ -7,6 +7,7 @@ one:
   end_time: 2018-10-22 11:17:43
   location: Location of event 1.
   group: one
+  is_viewable: true
 
 two:
   name: Event2
@@ -15,3 +16,4 @@ two:
   end_time: 2018-11-22 11:50:43
   location: The location of event 2.
   group: two
+  is_viewable: true
