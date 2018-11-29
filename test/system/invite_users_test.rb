@@ -2,9 +2,10 @@ require "application_system_test_case"
 
 class InviteUsersTest < ApplicationSystemTestCase
     test "simulate inviting to group" do
+        user1 = simulate_login_user_one
         user2 = users(:two)
-        user = simulate_login_user_one
-        group = create_test_group_with_user(user)
+        group = groups(:one)
+        
         visit group_path(group)
         click_on 'Invite Members'
         fill_in 'invite_member_email', with: user2.email
@@ -15,11 +16,10 @@ class InviteUsersTest < ApplicationSystemTestCase
         find('.img-circular').hover
         click_on 'Sign Out'
         
-        user = simulate_login_user_two
-        visit @group
+        simulate_login_as(user2)
+        visit group_path(group)
         click_on 'Accept Invite'
         
         assert_selector"#notice", text: "Joined group successfully."
-    
     end
 end

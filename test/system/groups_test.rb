@@ -45,33 +45,6 @@ class GroupsTest < ApplicationSystemTestCase
     assert_selector "#notice", text: "Group was successfully destroyed."
   end
 
-    #test "edit an existing group" do
-    #user, group = create_test_group
-
-    #visit group_path(group)
-    
-    #click_link('Edit')
-    #click_on 'Edit'
-    #name = "Group #{rand(10)}"
-    #fill_in 'group_name', with: name
-
-    #click_on 'Update Group'
-
-    #assert_selector "h3", text: name
-    #end
-
-#test "destroy a new group" do
-#user, group = create_test_group
-
-#visit group_path(group)
-
-#page.accept_confirm do
-#   click_on 'Delete Group'
-# end
-
-#  assert_selector "#notice", text: "Group was successfully destroyed."
-# end
-
   test "test no group name of event" do
     visit simulate_login_path
     

@@ -3,7 +3,9 @@
 one:
   group: one
   user: one
+  role: ADMIN
 
 two:
   group: two
   user: two
+  role: ADMIN

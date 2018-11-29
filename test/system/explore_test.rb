@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class ExplorePage < ApplicationSystemTestCase
     test "view a public group" do
-        user, group = create_test_group
+        user, group = users(:one), groups(:one)
+        simulate_login_as(user)
         visit explore_path
     
         click_on 'Group Search'
@@ -11,13 +12,11 @@ class ExplorePage < ApplicationSystemTestCase
     end
 
     test "view a public event" do
-    event = create_test_event
-    visit explore_path
-    
-    click_on 'Event Search'
-    
-    assert_selector "h3",text: event.name
-    
+        event = events(:one)
+        visit explore_path
+        
+        click_on 'Event Search'
+        
+        assert_selector "h3", text: event.name
     end
-
 end

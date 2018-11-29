@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class EventsTest < ApplicationSystemTestCase
   test "add a new event" do
-    user, group = create_test_group
+    user, group = users(:one), groups(:one)
+    simulate_login_as(user)
     
     visit group_path(group)
     
@@ -67,7 +68,8 @@ class EventsTest < ApplicationSystemTestCase
 #  end
 
   test "add a new event without name" do
-    user, group = create_test_group
+    user, group = users(:one), groups(:one)
+    simulate_login_as(user)
     
     visit group_path(group)
     
@@ -83,7 +85,8 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "add a new event with no description" do
-    user, group = create_test_group
+    user, group = users(:one), groups(:one)
+    simulate_login_as(user)
     
     visit group_path(group)
     
