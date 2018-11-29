@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :group
+  has_many :event_attendees
+  has_many :users, through: :event_attendees
 
   validates :name, presence: true # make sure that the user entered an event name
   validates :start_time, presence: true
