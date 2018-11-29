@@ -55,7 +55,7 @@
             <%= link_to 'Explore', explore_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %>
           </li>
 
-          <!-- TODO: PUT THIS SOMEWHERE test account-->
+          <!-- TODO: PUT THIS SOMEWHERE -->
           <% if logged_in? %>
               <%= link_to "Notifications (#{current_user.notifications.size})", notifications_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %>
           <% end %>
