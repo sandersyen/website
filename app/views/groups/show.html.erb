@@ -126,6 +126,12 @@
               <% if @group.users.each do |user| %>
                 <li>
                   <%= user_label user %>
+                  <% if @group.is_admin?(user) %>
+                    <b>(Admin)</b>
+                  <% end %>
+                  <% if @group.is_admin?(current_user) %>
+                    <%= button_to @group.is_admin?(user) ? 'Demote' : 'Promote', toggle_admin_path(user_id: user.id) %>
+                  <% end %>
                 </li>
               <% end.empty? %>
                 No users
