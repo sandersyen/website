@@ -59,11 +59,6 @@ class GroupsController < ApplicationController
       return
     end
 
-    if @group.admins.size == 1
-      redirect_to @group, alert: 'You cannot demote the only admin of your team!'
-      return
-    end
-
     membership.update(role: @group.is_admin?(user) ? 'USER' : 'ADMIN')
     redirect_to @group, notice: 'Toggled admin status of user successfully.'
   end
