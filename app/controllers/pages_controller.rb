@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   end
 
   def explore ()
-    @events = Event.all
+    @events = Event.where( is_viewable: true )
    # @groups = Group.all
    @groups = Group.where( is_viewable: true )
     if (params[:search_event])
