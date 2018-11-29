@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [
     :show, :edit, :update, :destroy, :join_group, 
     :leave_group, :invite_member, :disinvite_member,
-    :accept_invite, :create_post, :delete_post
+    :accept_invite, :create_post, :delete_post, :toggle_admin
   ]
 
   # GET /groups
@@ -41,6 +41,26 @@ class GroupsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def toggle_admin
+    return if enforce_permissions(@group)
+
+    user = User.find(params[:user_id])
+
+    membership = @group.group_memberships.find_by(user: user)
+
+    if membership.nil?
+      redirect_to @group, alert: 'That user is not a member of the group.'
+    end
+
+    if user == current_user
+      redirect_to @group, alert: 'You may not demote yourself.'
+      return
+    end
+
+    membership.update(role: @group.is_admin?(user) ? 'USER' : 'ADMIN')
+    redirect_to @group, notice: 'Toggled admin status of user successfully.'
   end
 
   # POST /groups/:id/post
@@ -212,7 +232,7 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :description, :category_id, :is_public)
+      params.require(:group).permit(:name, :description, :category_id, :is_public, :is_viewable)
     end
 
     def post_params

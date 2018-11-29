@@ -1,7 +1,9 @@
-<h2>New Event</h2>
 
-<%= render 'form', event: @event, group: @group%>
+<div class="container">
+  <br/>
+  <h2>
+    New Event for <%= group_label @event.group %>
+  </h2>
 
-<!--
-<%= link_to 'Back', events_path %>
--->
+  <%= render 'form', event: @event %>
+</div>

@@ -1,9 +1,8 @@
 <%= form_with(model: group, local: true) do |form| %>
   <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <b><%= pluralize(group.errors.count, "error") %> occurred:</b>
+      <ul style="margin: 0">
       <% group.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
@@ -11,47 +10,44 @@
     </div>
   <% end %>
 
-
-  <div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-      </div>
-      <main class="col-12 col-md-8 col-xl-8 bd-content">
-        <div class="form-group">
-          <%= form.label :name, "Name:", class: "col-md-4 control-label" %>
-          <div>
-            <%= form.text_field :name, id: :group_name, class: "form-control", placeholder: "Group Name"%>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :description, "Description:", class: "col-md-4 control-label" %>
-          <div>
-            <%= form.text_area :description, id: :group_description, class: "form-control", placeholder:"Group Description", rows:"5"%>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :category_id, "Category:", class: "col-md-4 control-label" %>
-          <div>
-            <%= form.select :category_id, category_options(group), {}, id: :group_category_id, class: "form-control"%>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :is_public, "Is Public:", class: "col-md-4 control-label" %>
-          <div>
-            <%= form.check_box :is_public, id: :group_is_public, class: "form-control" %>
-          </div>
-        </div>
-
-        <div class="form-group">
-            <%= form.submit %>
-        </div>
-      </main>
-      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-      </div>
+  <div class="form-group">
+    <%= form.label :name, "Name:", class: "control-label" %>
+    <div>
+      <%= form.text_field :name, id: :group_name, class: "form-control" %>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, "Description:", class: "control-label" %>
+    <div>
+      <%= form.text_area :description, id: :group_description, class: "form-control", rows:"5"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :category_id, "Category:", class: "control-label" %>
+    <div>
+      <%= form.select :category_id, category_options(group), {}, id: :group_category_id, class: "form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div>
+      <%= form.check_box :is_public, id: :group_is_public %>
+      <%= form.label :is_public, "Publicly Joinable", class: "control-label" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div>
+      <%= form.check_box :is_viewable, id: :group_is_viewable %>
+      <%= form.label :is_viewable, "Publicly Visible", class: "control-label" %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+      <%= form.submit %>
   </div>
 <% end %>
 

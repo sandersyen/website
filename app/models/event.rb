@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :group
 
+  attr_accessor :times
+
   validates :name, presence: true # make sure that the user entered an event name
   validates :start_time, presence: true
   validates :end_time, presence: true
@@ -13,13 +15,13 @@ class Event < ApplicationRecord
 
   def start_cannot_be_in_the_past
     if start_time.present? && start_time < Time.now - 3600
-      errors.add(:start_time, "can't be in the past")
+      errors.add(:times, "can't be in the past")
     end
   end
 
   def start_must_be_before_end
     if start_time.present? && end_time.present? && start_time > end_time
-      errors.add(:start_time, "must be before the end time")
+      errors.add(:times, "must be valid (start time must be before end time)")
     end
   end
 

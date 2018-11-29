@@ -21,7 +21,7 @@
           </div>
           <div class="row">
             <h5 class="card-subtitle col mb-2 text-muted">
-            CONTACT: <%= 123 %>
+            CONTACT: <%= user_label @group.admins.first.user %> <!-- NOTE THIS IS ONLY SHOWING ONE ADMIN RIGHT NOW! -->
             </h5>
             <h5 class="card-subtitle col card-content-bottom text-right text-muted">
               <%= @group.users.count %> MEMBERS
@@ -70,21 +70,22 @@
       <h2>Group Posts</h2>
       <%= form_for(@post, url: create_group_post_path(@group)) do |form| %>
         <% if @post.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-            <ul>
+          <div class="alert alert-danger">
+            <b><%= pluralize(@post.errors.count, "error") %> occurred:</b>
+            <ul style="margin: 0">
             <% @post.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
             </ul>
           </div>
         <% end %>
+
         <%= form.hidden_field :user_id %>
         <%= form.hidden_field :group_id %>
-        <%= form.text_area :body %>
-        <%= form.submit 'Post' %>
+        <%= form.text_area :body, class: 'form-control' %>
+        <%= form.submit 'Post', class: 'btn btn-primary' %>
       <% end %>
+      <hr/>
       <% if @group.recent_posts.empty? %>
         No posts.
       <% else %>
@@ -99,7 +100,6 @@
           <% end %>
         </ul>
       <% end %>
-
     </main>
     <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
 
@@ -126,6 +126,12 @@
               <% if @group.users.each do |user| %>
                 <li>
                   <%= user_label user %>
+                  <% if @group.is_admin?(user) %>
+                    <b>(Admin)</b>
+                  <% end %>
+                  <% if @group.is_admin?(current_user) %>
+                    <%= button_to @group.is_admin?(user) ? 'Demote' : 'Promote', toggle_admin_path(user_id: user.id) %>
+                  <% end %>
                 </li>
               <% end.empty? %>
                 No users
@@ -166,8 +172,6 @@
           </div>
         </div>
       </div>
-
-      <%= link_to 'Show Group Posts', "#", class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>
 
       <% if @group.users.include?(current_user) %>
         <%= link_to 'Create An Event', new_event_path(group_id: @group.id), class:"btn btn-primary btn-lg mt-2 button-content btn-block"%>

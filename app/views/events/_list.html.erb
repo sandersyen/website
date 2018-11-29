@@ -1,29 +1,8 @@
-<% if events.each do |event| %>
-  <p>
-    <%= link_to event do %>
-      <div class="card object-color text-black card-link">
-        <div class="card-body">
-          <h3 class="card-title">
-            <%= event.name %>
-          </h3>
-      
-          <h5 class="card-subtitle col mb-2 text-muted">
-            <%= event.description %>
-          </h5>
-        
-          <p class="card-text bg-white text-dark h-100 p-3">
-            <u>WHEN? </u>
-            <%= event.start_time %><br>
-            <u>WHERE? </u>
-            <%= event.location %><br>
-            <u>WHO? </u>
-            <%= event.location %><br>
-            <%= link_to event.group.name, event.group %>
-          </p>
-        </div>
-      </div>
-    <% end %>
-  </p>            
-<% end.empty? %>
-  No events found.
-<% end %>
+
+<div class="card-columns">
+  <% if events.each do |event| %>
+    <%= render 'card', event: event, summary: true %>
+  <% end.empty? %>
+    No events found.
+  <% end %>
+</div>

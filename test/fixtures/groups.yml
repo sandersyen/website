@@ -5,9 +5,11 @@ one:
   description: MyText
   category: one
   is_public: false
+  is_viewable: true
 
 two:
   name: Group2
   description: MyText
   category: two
   is_public: true
+  is_viewable: true

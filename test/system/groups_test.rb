@@ -3,10 +3,10 @@ require "application_system_test_case"
 class GroupsTest < ApplicationSystemTestCase
   test "simulate two user logins" do
     simulate_login_user_one
-    find('.img-circular').hover
+    find('.user-dropdown').click
     click_on 'Sign Out'
     simulate_login_user_two
-    find('.img-circular').hover
+    find('.user-dropdown').click
     click_on 'Sign Out'
   end
 
@@ -24,7 +24,7 @@ class GroupsTest < ApplicationSystemTestCase
     click_on 'Create Group'
 
     assert_selector "#notice", text: "Group was successfully created."
-    assert_selector "h3", text: 'Group name'
+    assert page.has_content?('Group name')
     #Need to add here a test checking the group description, not sure how to find that text on the screen.
     
     #NOW TEST EDIT AND EXISTING GROUP
@@ -35,7 +35,7 @@ class GroupsTest < ApplicationSystemTestCase
     click_on 'Update Group'
     
     #another assert about checking the descripton
-    assert_selector "h3", text: name
+    assert page.has_content?(name)
     
     #now test deleting the event
     page.accept_confirm do
@@ -58,7 +58,7 @@ class GroupsTest < ApplicationSystemTestCase
     
     click_on 'Create Group'
     
-    assert_selector "h2", text: "1 error prohibited this group from being saved:"
+    assert page.has_content?('error')
   end
 
   test "test no group description of event" do
