@@ -92,23 +92,46 @@
             <% end %>
           </p>
         <% end %>
-      </div>  
+
+
+
+      </div>
+
     </main>
 
-    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+
+
+      <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+        <button type="button" class="btn btn-primary btn-lg button-content btn-block" id="search-group-btn" data-target="#search-group">
+          Group Search
+        </button>
+
         <button type="button" class="btn btn-primary btn-lg button-content btn-block" id="search-event-btn" data-target="#search-event">
           Event Search
         </button>
+      </div>
 
-        <button type="button" class="btn btn-primary btn-lg mt-2 button-content btn-block" id="search-group-btn" data-target="#search-group">
-          Group Search
-        </button>
+
+<!--
+
+    <div class="custom-control custom-radio">
+      <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios">
+      <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
     </div>
+
+
+
+    <div class="custom-control custom-radio">
+      <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
+      <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
+    </div>
+-->
+
   </div>
 </div>
 
 <script>
-  var show_event = true;
+  var show_event = false;
 
   if($("#event-search-bar").val().length !== 0)
   {
@@ -123,21 +146,29 @@
   if (show_event) {
       $("#search-group").hide();
       $("#search-event").show();
+      $("#search-event-btn").addClass('curr-event-btn');      // *** Has to be an easier way to do this...
+      $("#search-group-btn").removeClass('curr-event-btn');
   } else {
       $("#search-group").show();
       $("#search-event").hide();
+      $("#search-event-btn").removeClass('curr-event-btn');
+      $("#search-group-btn").addClass('curr-event-btn');
   }
 
   $("#search-event-btn").click(function()
   {
     $("#search-event").show();
     $("#search-group").hide();
+    $(this).addClass('curr-event-btn');                       // *** and an easier way of doing this...
+    $("#search-group-btn").removeClass('curr-event-btn');
   });
 
   $("#search-group-btn").click(function()
   {
     $("#search-group").show();
     $("#search-event").hide();
+    $(this).addClass('curr-event-btn');
+    $("#search-event-btn").removeClass('curr-event-btn');
   });
 
 </script>
