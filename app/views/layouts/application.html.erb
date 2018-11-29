@@ -54,7 +54,11 @@
           <li class="nav-item">
             <%= link_to 'Explore', explore_path, class:"btn btn-lg btn-dark mr-sm-2 nav-button" %>
           </li>
-          
+
+          <!-- TODO: PUT THIS SOMEWHERE -->
+          <% if logged_in? %>
+            <%= link_to "Notifications (#{current_user.notifications.size})", notifications_path %>
+          <% end %>
           <!--
           <li class="nav-item">
             <%= link_to 'About', about_path, class:"btn btn-outline-success mr-sm-2" %>
