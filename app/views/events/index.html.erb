@@ -1,20 +1,12 @@
-<h2>My Events</h2>
 
-<div class="container-fluid">
-  <div class="row flex-xl-nowrap">
-    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-    </div>
-    <main class="col-12 col-md-8 col-xl-8 bd-content">
-      <h3>Upcoming Events</h3>
-      <%= render 'list', events: @events %>
+<div class="container">
+  <br/>
+  <h2>Upcoming Events</h2>
+  <hr/>
+  <%= render 'list', events: @upcoming_events %>
 
-      <h3>Past Events</h3>
-      <%= render 'list', events: @past_events %>
-    </main>
-    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
-      <!--
-      <%= link_to 'Create An Event', new_event_path, class:"btn btn-primary btn-lg mt-2 button-content"%>        
-      -->
-    </div>
-  </div>
+  <br/>
+  <h2>Past Events</h2>
+  <hr/>
+  <%= render 'list', events: @past_events %>
 </div>

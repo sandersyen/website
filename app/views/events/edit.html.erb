@@ -1,8 +1,9 @@
-<h2>Editing Event</h2>
 
-<%= render 'form', event: @event %>
+<div class="container">
+  <br/>
+  <h2>
+    Editing Event for <%= group_label @event.group %>
+  </h2>
 
-<!--
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
--->
+  <%= render 'form', event: @event %>
+</div>

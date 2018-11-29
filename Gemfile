@@ -13,12 +13,13 @@ group :development, :test do
   gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
 end
 
+gem 'browser-timezone-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -30,6 +31,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use Full calendar for Event calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
+
 
 group :development, :test do
   gem 'simplecov', require: false
@@ -53,7 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Bootstrap 4 ruby gem for Ruby on Rails (Sprockets) and Hanami (formerly Lotus).
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap'
+gem 'bootswatch'
 
 # Bootstrap JavaScript depends on jQuery. If you're using Rails 5.1+, add the jquery-rails gem to your Gemfile
 gem 'jquery-rails'

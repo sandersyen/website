@@ -1,0 +1,47 @@
+
+<div class="card">
+  <div class="card-header">
+    <strong><%= link_to event.name, event, style: 'color: inherit' %></strong>
+    <% if event.is_viewable %>
+      <span class="badge badge-info float-right">Visible to Public</span>
+    <% else %>
+      <span class="badge badge-dark float-right">Hidden from Public</span>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <% if event.description.presence %>
+      <p class="card-text">
+        <%= summary ? truncate(event.description, length: 100) : event.description %>
+      </p>
+    <% end %>
+
+    <p class="card-text">
+      <b><i>When?</i></b><br>
+      <%= event.start_time.strftime('%b %e at %I:%M %p') %> to 
+      <% if event.end_time.to_date == event.start_time.to_date %>
+        <%= event.end_time.strftime('%I:%M %p') %>
+      <% else %>
+        <%= event.end_time.strftime('%b %e at %I:%M %p') %>
+      <% end %>
+    </p>
+    <% if event.location.presence %>
+      <p class="card-text">
+        <b><i>Where?</i></b><br/>
+        <%= event.location %>
+      </p>
+    <% end %>
+    <% if event.location.presence %>
+      <p class="card-text">
+        <b><i>Who?</i></b><br>
+        <%= link_to event.group.name, event.group %>
+      </p>
+    <% end %>
+
+    <% if summary %>
+      <%= link_to 'View Details', event, class: 'btn btn-primary btn-sm' %>
+    <% elsif event.can_edit?(current_user) %>
+      <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary btn-sm' %>
+      <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm"%>
+    <% end %>
+  </div>
+</div>
