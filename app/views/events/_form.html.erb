@@ -52,6 +52,13 @@
         </div>
 
         <div class="form-group">
+          <%= form.label :is_viewable, "Is Publicly Visible:", class: "col-sm-4 control-label" %>
+          <div>
+            <%= form.check_box :is_viewable, id: :event_is_viewable, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
           <%= form.label :group_id, "Group:", class: "col-md-4 control-label" %>
           <div>
             <%= form.select :group_id, group_default(event, @group||event.group), {}, id: :event_group_id, class: "form-control" %>
