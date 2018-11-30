@@ -12,7 +12,8 @@
 
     <% if (invite = event.invite_for(current_user)).presence %>
       <div class="alert alert-info">
-        You have been invited to attend this event. <%= link_to 'Accept Invite', accept_event_invite_path(@event), method: :post, form_class: 'form-inline' %>
+        You have been invited to attend this event.
+        <%= button_to 'Accept Invite', accept_event_invite_path(event), method: :post %>
       </div>
     <% end %>
 
