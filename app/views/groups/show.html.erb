@@ -34,28 +34,35 @@
             <%= @group.description %>
           </p>
 
-          <div class="row">
-            <% if @group.events.each do |event| %>
-              <div class="col-sm-12 col-md-6 eq-height group-event-row">
-                <p class="card-text bg-white text-dark h-100 p-3">
-                  <u><b><i>Upcoming Event:</i></b></u><br>
-                  <%= link_to event.name, event %><br>
-                  <u><b><i>When?</i></b></u><br>
-                  <%= link_to event.start_time, event %><br>
-                  <u><b><i>Where?</i></b></u><br>
-                  <%= link_to event.location, event %><br>
-                  <u><b><i>Description?</i></b></u><br>
-                  <%= link_to event.description, event %><br>
-                </p>
-              </div>
-            <%end%>
+          <div class="card-text bg-secondary text-dark p-3">
+            <div class="card-header bg-light">
+              <h3><b><i>Upcoming Event(s):</i></b></u></h3>
+            </div>
+            <div class="row">
+              <% if @group.events.each do |event| %>
+                <div class="col-sm-12 col-md-6 eq-height group-event-row">
+                  <p class="card-text bg-white text-dark h-100 p-3">
+                    <%= link_to event.name, event %><br>
+                    <u><b><i>When?</i></b></u><br>
+                    <%= link_to event.start_time, event %><br>
+                    <u><b><i>Where?</i></b></u><br>
+                    <%= link_to event.location, event %><br>
+                    <u><b><i>Description?</i></b></u><br>
+                    <%= link_to event.description, event %><br>
+                  </p>
+                </div>
+              <%end%>
+            </div>
+                <% if @group.events.each do |event| %>
+                <% end.empty? %>
+                  <div class="text-light" align="middle">
+                  <br><h4><b> No Events </b></h4>
+                  </div>
+                <% end%>
+              <% end%>
           </div>
 
-          <% if @group.events.each do |event| %>
-          <% end.empty? %>
-            <h5 align="middle"><b> No Events </b></h5>
-          <% end%>
-          <% end%>
+
         
 
           <!-- TODO: Move this somewhere else? -->
