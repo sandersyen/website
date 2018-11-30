@@ -1,6 +1,10 @@
 class Event < ApplicationRecord
   belongs_to :group
   has_many :ratings
+  has_many :event_attendees
+  has_many :users, through: :event_attendees
+  has_many :event_invites
+
 
   attr_accessor :times
 
@@ -35,6 +39,10 @@ class Event < ApplicationRecord
   # returns true if the user can edit this event
   def can_edit?(user)
     group.can_edit?(user) # only let admins of a group edit an event
+  end
+
+  def invite_for(user)
+    event_invites.find_by(user: user)
   end
 
   private

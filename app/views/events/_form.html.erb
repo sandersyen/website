@@ -48,7 +48,8 @@
   <%= form.hidden_field :group_id, value: event.group.id %>
 
   <div class="form-group">
-      <%= form.submit nil, class: 'btn btn-lg btn-primary' %>
+      <%= form.submit nil, class: 'btn btn-lg btn-primary btn-sm' %>
+      <%= link_to "Cancel", :back, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm"%>
   </div>
 
 <% end %>
