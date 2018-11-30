@@ -32,7 +32,8 @@ class InviteUsersTest < ApplicationSystemTestCase
     
         visit group_path(group)
         click_on 'Invite Members'
-        fill_in 'invite_member_email', with: 'user2@email.com'
+        fill_in 'invite_member_email', with: user2.email
+        fill_in 'invite_member_email', with: user2.email
         click_on 'Invite'
     
         assert_selector"#notice", text: "You have invited " + user2.name + " to the group."
@@ -69,14 +70,16 @@ class InviteUsersTest < ApplicationSystemTestCase
 
         visit group_path(group)
         click_on 'Invite Members'
-        fill_in 'invite_member_email', with: 'user2@email.com'
+        fill_in 'invite_member_email', with: user2.email
+        fill_in 'invite_member_email', with: user2.email
         click_on 'Invite'
 
         visit group_path(group)
         click_on 'Invite Members'
-        fill_in 'invite_member_email', with: 'user2@email.com'
+        fill_in 'invite_member_email', with: user2.email
+        fill_in 'invite_member_email', with: user2.email
         click_on 'Invite'
 
-        assert_selector"#notice", text: "That user has already been invite to the group."
+        assert_selector"#alert", text: "That user has already been invite to the group."
     end
 end
