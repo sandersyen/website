@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     rating = Integer(params[:rating])
     Rating.where(user: current_user, event: @event).destroy_all
     Rating.create(user: current_user, event: @event, rating: rating)
-    redirect_to @event, notice: 'You\'ve successfully rated the event.'
+    redirect_to events_path, notice: 'You\'ve successfully rated the event.'
   end
 
   # GET /events/new
