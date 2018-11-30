@@ -30,7 +30,7 @@
           </div>
 
           <p class="card-text bg-light text-dark p-3">
-            <u><b><i>DESCRIPTION:</i></b></u>
+            <u><b><i>Description:</i></b></u>
             <%= @group.description %>
           </p>
 
@@ -38,13 +38,13 @@
             <% if @group.events.each do |event| %>
               <div class="col-sm-12 col-md-6 eq-height group-event-row">
                 <p class="card-text bg-white text-dark h-100 p-3">
-                  <u><b><i>UPCOMING EVENT:</i></b></u><br>
+                  <u><b><i>Upcoming Event:</i></b></u><br>
                   <%= link_to event.name, event %><br>
-                  <u><b><i>WHEN?</i></b></u><br>
+                  <u><b><i>When?</i></b></u><br>
                   <%= link_to event.start_time, event %><br>
-                  <u><b><i>WHERE?</i></b></u><br>
+                  <u><b><i>Where?</i></b></u><br>
                   <%= link_to event.location, event %><br>
-                  <u><b><i>DESCRIPTION?</i></b></u><br>
+                  <u><b><i>Description?</i></b></u><br>
                   <%= link_to event.description, event %><br>
                 </p>
               </div>
@@ -95,7 +95,7 @@
             <li>
               <%= user_label(post.user) %> said "<%= post.body %>" at <%= post.created_at %>
               <% if post.can_delete?(current_user) %>
-                <%= button_to 'Delete', delete_group_post_path(@group, group_post_id: post.id), method: :delete %>
+                <%= button_to 'Delete',  delete_group_post_path(@group, group_post_id: post.id), method: :delete, id:"post_id-" + post.id.to_s %>
               <% end %>
             </li>
           <% end %>
