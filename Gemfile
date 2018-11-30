@@ -64,3 +64,7 @@ gem 'bootswatch'
 # Bootstrap JavaScript depends on jQuery. If you're using Rails 5.1+, add the jquery-rails gem to your Gemfile
 gem 'jquery-rails'
 gem 'google_sign_in'
+
+# Provides Octicons web fonts and stylesheets as a Rails engine for use with the asset pipeline.
+gem 'octicons'
+gem 'octicons_helper'
