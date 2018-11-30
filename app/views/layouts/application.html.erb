@@ -8,8 +8,8 @@
     <%= csrf_meta_tags %>
 
     <%= favicon_link_tag asset_path('favicon-32x32.png'), :rel => 'icon', :type =>  'image/png' %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
 
     <% content_for :hover_functionality do %>
       <script type="text/javascript">
@@ -30,14 +30,14 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <a class="navbar-brand" href="/">
-            <%= image_tag "chrono png.png", class:'nav-logo navbar-brand', alt: "Brand"%>
+            <%= image_tag "logo_new.png", class:'nav-logo navbar-brand', alt: "Brand"%>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto nav">
               <% if logged_in? %>
                 <li class="nav-item <%= current_class?('/groups') %>">
                   <%= link_to 'My Groups', groups_path, class:"nav-link" %>

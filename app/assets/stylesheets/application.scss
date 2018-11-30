@@ -25,7 +25,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   font-size: 16px;
 }
 
@@ -41,8 +41,15 @@ body {
   
 
 .navbar-brand img {
-    height: 48px;
+    height: 60px;
 }
+
+.nav a{
+  font-size: 1.05em !important;
+}
+
+
+
 
 .nav-button {
     width: fit-content;

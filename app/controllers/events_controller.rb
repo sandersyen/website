@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :invite_member, :edit, :copy, :update, :destroy, :accept_invite]
 
   # GET /events
   def index
@@ -27,6 +27,15 @@ class EventsController < ApplicationController
   def show
   end
 
+  # GET /events/:id/copy
+  def copy
+    return if enforce_login(events_path)
+
+    @event = @event.dup
+    @group = @event.group
+    render :new
+  end
+
   # GET /events/new
   def new
     return if enforce_login(events_path)
@@ -51,7 +60,7 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-    
+
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -70,7 +79,51 @@ class EventsController < ApplicationController
     end
   end
 
+  def accept_invite
+    invite = EventInvite.find_by(event: @event, user: current_user)
 
+    @attendee = @event.event_attendees.new(user: current_user)
+
+    if invite.nil?
+      redirect_to events_path, notice: 'You have not been invited to that event.'
+    elsif @attendee.save
+      invite.destroy
+      redirect_to @event, notice: 'Joined event successfully.'
+    else
+      redirect_to @event, notice: 'Unable to join that event, try again.'
+    end
+  end
+
+  def invite_member
+    return if enforce_permissions(@event)
+
+    invited_user = User.find_by_email(params[:email])
+    invite = EventInvite.new(event: @event, user: invited_user)
+    existing_invite = EventInvite.find_by(event: @event, user: invited_user)
+
+    if invited_user.nil?
+      redirect_to @event, alert: 'Unable to find that user.'
+      return
+    end
+
+    if @event.users.include?(invited_user)
+      redirect_to @event, alert: 'That user is already in the event.'
+      return
+    end
+
+    unless existing_invite.nil?
+      redirect_to @event, alert: 'That user has already been invite to the group.'
+      return
+    end
+
+    if invite.save
+      invite.create_notif
+      redirect_to @event, notice: "You have invited #{invited_user.name} to the event."
+      UserMailer.group_invite(invited_user.email).deliver_now
+    else
+      redirect_to @event, alert: 'Unable to invite that user.'
+    end
+  end
 
   # DELETE /events/1
   def destroy
