@@ -1,0 +1,90 @@
+<h2>Groups</h2>
+
+<body>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+      </div>
+      <main class="col-12 col-md-8 col-xl-10 bd-content">
+        <% current_user.groups.each do |group| %>
+          <p>
+            <%= link_to group do %>
+              <div class="card object-color text-black card-link">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <%= group.name %>
+                  </h3>
+                  <p class="card-text limit-height card-content">
+                    <%= group.description %>
+                  </p>
+                  <div class="row">
+                    <p class="col card-text card-content-bottom">
+                      category: <%=category_label group.category %>
+                    </p>
+                    <p class="col card-text card-content-bottom text-right">
+                      <%= group.users.count %> MEMBERS - <%= group.events.count %> UPCOMING EVENTS
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </p>
+        <% end %>
+      </main>
+      <div class="col-12 col-md-2 col-xl-1 bd-sidebar">
+          <%= link_to 'Create A Group', new_group_path, class:"btn btn-primary btn-lg button-content"%>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Is public</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td>
+          <%= link_to group do %>
+            <div class="card text-dark bg-light mb-3 w-75">
+              <div class="card-body">
+                <h5 class="card-title"><%= group.name %></h5>
+                <p class="card-text"><%= group.description %></p>
+                <p class="card-text"> category: <%=category_label group.category %> </p>
+              </div>
+            </div>
+          <% end %>
+        </td>
+        <td><%= group.name %></td>
+        <td><%= group.description %></td>
+        <td><%= category_label group.category %></td>
+        <td><%= group.is_public %></td>
+        <td><%= link_to 'Show', group %></td>
+        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+-->
+<br>

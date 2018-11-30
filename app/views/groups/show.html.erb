@@ -94,7 +94,7 @@
             <li>
               <%= user_label(post.user) %> said "<%= post.body %>" at <%= post.created_at %>
               <% if post.can_delete?(current_user) %>
-                <%= button_to 'Delete', delete_group_post_path(@group, group_post_id: post.id), method: :delete %>
+                <%= button_to 'Delete',  delete_group_post_path(@group, group_post_id: post.id), method: :delete, id:"post_id-" + post.id.to_s %>
               <% end %>
             </li>
           <% end %>
