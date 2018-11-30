@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :copy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :copy, :ratings]
 
   # GET /events
   def index
@@ -34,6 +34,17 @@ class EventsController < ApplicationController
     @event = @event.dup
     @group = @event.group
     render :new
+  end
+
+  # GET /events/:id/rating
+  def ratings
+    return if enforce_login(events_path)
+    # @event
+
+    rating = Integer(params[:rating])
+    Rating.where(user: current_user, event: @event).destroy_all
+    Rating.create(user: current_user, event: @event, rating: rating)
+    redirect_to @event, notice: 'You\'ve successfully rated the event.'
   end
 
   # GET /events/new

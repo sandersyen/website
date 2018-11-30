@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_215727) do
+ActiveRecord::Schema.define(version: 2018_11_30_192952) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 2018_11_29_215727) do
     t.datetime "updated_at", null: false
     t.index ["notif_type", "user_id", "actor_id", "actor_type", "target_id", "target_type"], name: "notifications_index", unique: true
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_ratings_on_event_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

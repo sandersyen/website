@@ -35,24 +35,32 @@
         <b><i>Who?</i></b><br>
         <%= link_to event.group.name, event.group %>
       </p>
-      <p class = "card-text">
+      <p class = "card-text ratings">
       <b><i>Your Rating</i></b><br>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
+        <%= link_to rate_event_path(id: event.id, rating: 1) do %>
+          <span class="fa fa-star <% if event.current_rating >= 1 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 2) do %>
+        <span class="fa fa-star <% if event.current_rating >= 2 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 3) do %>
+        <span class="fa fa-star <% if event.current_rating >= 3 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 4) do %>
+        <span class="fa fa-star <% if event.current_rating >= 4 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 5) do %>
+        <span class="fa fa-star <% if event.current_rating >= 5 %>checked<% end %>"></span>
+        <% end %>
       </p>
     <% end %>
 
     <% if summary %>
       <%= link_to 'View Details', event, class: 'btn btn-primary btn-sm' %>
-      <%= link_to 'Rate Event', '#', class: 'btn btn-primary btn-sm rate_event_button' %>
     <% elsif event.can_edit?(current_user) %>
       <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary btn-sm' %>
       <%= link_to 'Copy Event', copy_event_path(event), class:"btn btn-info btn-sm"%>
       <%= link_to 'Delete Event', event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm"%>
-      <%= link_to 'Rate Event', '#', class: 'btn btn-primary btn-sm' %>
     <% end %>
 
     
