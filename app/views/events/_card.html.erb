@@ -9,6 +9,13 @@
     <% end %>
   </div>
   <div class="card-body">
+
+    <% if (invite = event.invite_for(current_user)).presence %>
+      <div class="alert alert-info">
+        You have been invited to attend this event. <%= link_to 'Accept Invite', accept_event_invite_path(@event), method: :post, form_class: 'form-inline' %>
+      </div>
+    <% end %>
+
     <% if event.description.presence %>
       <p class="card-text">
         <%= summary ? truncate(event.description, length: 100) : event.description %>
@@ -37,12 +44,52 @@
       </p>
     <% end %>
 
+    <b><i><%= pluralize(event.event_attendees.count, 'Attendee') %></i></b><br/>
+    <% if event.event_attendees.empty? %>
+      No one is attending...
+    <% else %>
+      <ul>
+        <% event.event_attendees.each do |attendee| %>
+          <li><%= user_label attendee.user %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <hr/>
+
     <% if summary %>
       <%= link_to 'View Details', event, class: 'btn btn-primary btn-sm' %>
     <% elsif event.can_edit?(current_user) %>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#inviteMember">
+        Invite Members
+      </button>
+
       <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary btn-sm' %>
       <%= link_to 'Copy Event', copy_event_path(event), class:"btn btn-info btn-sm"%>
       <%= link_to 'Delete Event', event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm"%>
+
+      <div class="modal fade" id="inviteMember" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Invite by email:</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= form_tag invite_event_member_path do %>
+                <%= label_tag :email %>
+                <%= text_field_tag :email, nil, id: :invite_member_email, class: 'form-control' %>
+                <%= submit_tag "Invite", class: "btn btn-primary btn-lg mt-2 button-content"%>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
