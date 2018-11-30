@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :copy]
 
   # GET /events
   def index
@@ -25,6 +25,15 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+  end
+
+  # GET /events/:id/copy
+  def copy
+    return if enforce_login(events_path)
+
+    @event = @event.dup
+    @group = @event.group
+    render :new
   end
 
   # GET /events/new
@@ -110,6 +119,7 @@ class EventsController < ApplicationController
     end
 
     def enforce_permissions(event)
+      j
       if !event.can_edit?(current_user)
         redirect_to event, alert: 'You are not allowed to do that.'
         return true
