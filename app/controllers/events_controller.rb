@@ -119,7 +119,7 @@ class EventsController < ApplicationController
     if invite.save
       invite.create_notif
       redirect_to @event, notice: "You have invited #{invited_user.name} to the event."
-      UserMailer.group_invite(invited_user.email).deliver_now
+      UserMailer.event_invite(invited_user.email).deliver_now
     else
       redirect_to @event, alert: 'Unable to invite that user.'
     end
