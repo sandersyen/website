@@ -1,2 +1,145 @@
-<h2>Pages#help</h2>
-<p>Find me in app/views/pages/help.html.erb</p>
+
+<p>
+    <div class="card object-color text-black card-link">
+        <div class="card-body">
+            <h3 class="card-title">
+                Getting Started
+            </h3>
+            <p class="card-text limit-height card-content">
+                To use most functions you must sign in with a google account.
+                <div class= "flexVerticalItem">
+                    <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
+                </div>
+            </p>
+           
+        </div>
+    </div>
+            
+</p>
+<p>
+    <div class="card object-color text-black card-link">
+        <div class="card-body">
+            <h3 class="card-title">
+                Groups
+            </h3>
+            
+            <div class="container">
+                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Show/Hide</button>
+                <div id="demo" class="collapse">
+                    <h4>
+                        Basics
+                    </h4>
+                    <p>
+                        To view groups you can click here: 
+                    </p>
+                    <p>
+                        <%= link_to 'My Groups', groups_path, class:"nav-link" %>
+                    </p>
+                    <p>
+                        Once in your 'My Groups' page you will see the groups you are part of.  You can click on groups and see more information like description, upcoming events, group posts, and more.
+                    </p>
+                    <h4>
+                        Creating a Group
+                    </h4>
+                    <p>
+                        In your 'My Groups' page you will see a 'Create a Group' button on the right side of the screen.  If you click on that you will be presented with a form to fill in.  Here you can enter a name, description, and category of the group.  You will also have the option to make the group publicly visible on our Explore page and publicly joinable as well.  
+                    </p>
+                    <h4>
+                        Features
+                    </h4>
+                    <h5>
+                        Editing Group (Admins only)
+                    </h5>
+                    <p>
+                        Click on a group and then click on pen icon in the top right corner.
+                    </p>
+                    <h5>
+                        Inviting Members (Admins only)
+                    </h5>
+                    <p>
+                        Click on a group and then click on Invite Members button on the right side.  Note: You can only invite users that have already logged into CHRONO before.
+                    </p>
+                    <h5>
+                        Demote/Promote Members (Admins only)
+                    </h5>
+                    <p>
+                        Click on a group and then click on member list. CLick demote or promote by the members you want to change the status of.
+                    </p>
+                
+                
+                </div>
+            </div>    
+        </div>
+    </div>
+            
+</p>
+
+<p>
+    <div class="card object-color text-black card-link">
+        <div class="card-body">
+            <h3 class="card-title">
+                Events
+            </h3>
+            
+            <div class="container">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1">Show/Hide</button>
+            <div id="demo1" class="collapse">
+                <h4>
+                    Basics
+                </h4>
+                <p>
+                     To view events you can click here: 
+                </p>
+                <p>
+                    <%= link_to 'My Events', events_path, class:"nav-link" %>
+                </p>
+                <p>
+                  Once in your 'My Events' page you will see the events you are invited to.  You can click on events and see more information like description, times and more.
+                </p>
+             </div>
+            </div>    
+           </div>
+    </div>
+            
+</p>
+
+<p>
+    <div class="card object-color text-black card-link">
+        <div class="card-body">
+            <h3 class="card-title">
+                Explore
+            </h3>
+            
+            <div class="container">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Show/Hide</button>
+                    <div id="demo2" class="collapse">
+                        <h4>
+                        Basics
+                        </h4>
+                        <p>
+                           To explore public groups and events: 
+                        </p>
+                        <p>
+                            <%= link_to 'Explore', explore_path, class:"nav-link" %>
+                        </p>
+                        <p>
+                            Once in your 'Explore' page, you will be able to see and search through public groups and events. 
+                        </p>
+                        <h4>
+                        Exploring Groups
+                        </h4>
+                        <p>
+                        To look at public groups you can click 'Group Search' to see and search through all publicly visible groups.  You can click on a group to see more information about a group like upcoming events, description, memberlist, and more.  If it is a group that also is publicly joinable you can click Join Group on the right to join.  
+                        </p>
+                        <h4>
+                        Exploring Events
+                        </h4>
+                        <p>
+                        To look at public events you can click 'Event Search' to see and search through all publicly visible events.  You can click on an event to see more details. 
+                        </p>
+                    </div>
+            </div>    
+        </div>
+    </div>
+            
+</p>
