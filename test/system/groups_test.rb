@@ -28,7 +28,7 @@ class GroupsTest < ApplicationSystemTestCase
     #Need to add here a test checking the group description, not sure how to find that text on the screen.
     
     #NOW TEST EDIT AND EXISTING GROUP
-    click_on 'Edit'
+    click_on 'edit_group'
     name = "Group #{rand(10)}"
     fill_in 'group_name', with: name
     fill_in 'group_description', with: 'Changed group description'
