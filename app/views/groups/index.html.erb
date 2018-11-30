@@ -4,9 +4,8 @@
     <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
     </div>
     <main class="col-12 col-md-8 col-xl-8 bd-content">
-      <div class="row">
+      <div class="card-columns">
           <% current_user.groups.each do |group| %>
-            <div class="col-sm-12 col-md-4 eq-height group-event-row">
               <%= link_to(group, style: 'color: inherit') do %>
                 <div class="card">
                   <div class="card-header">
@@ -27,7 +26,6 @@
                   </div>
                 </div>
               <% end %>
-            </div>
           <% end %>
       </div>
     </main>
