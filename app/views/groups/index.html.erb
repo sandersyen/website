@@ -10,8 +10,7 @@
               <%= link_to(group, style: 'color: inherit') do %>
                 <div class="card">
                   <div class="card-header">
-                    <strong><%= truncate(group.name, length: 50) %></strong>
-                    <span class="badge badge-primary float-right"><%= group.category.name %></span>
+                    <strong><%= truncate(group.name, length: 50) %></strong>                    
                   </div>
                   <div class="card-body">
                     <p class="card-text">
@@ -23,6 +22,8 @@
                         <%= pluralize(group.upcoming_events.count, 'upcoming event') %>
                       </small>
                     </p>
+                    <hr/>
+                    <span class="badge badge-primary float-right"><%= group.category.name %></span>
                   </div>
                 </div>
               <% end %>
