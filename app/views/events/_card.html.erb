@@ -39,6 +39,24 @@
         <u><b><i>Group:</i></b></u><br>
         <%= link_to event.group.name, event.group %>
       </p>
+      <p class = "card-text ratings">
+      <b><i>Your Rating</i></b><br>
+        <%= link_to rate_event_path(id: event.id, rating: 1) do %>
+          <span class="fa fa-star <% if event.current_rating >= 1 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 2) do %>
+        <span class="fa fa-star <% if event.current_rating >= 2 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 3) do %>
+        <span class="fa fa-star <% if event.current_rating >= 3 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 4) do %>
+        <span class="fa fa-star <% if event.current_rating >= 4 %>checked<% end %>"></span>
+        <% end %>
+        <%= link_to rate_event_path(id: event.id, rating: 5) do %>
+        <span class="fa fa-star <% if event.current_rating >= 5 %>checked<% end %>"></span>
+        <% end %>
+      </p>
     <% end %>
 
     <b><i><%= pluralize(event.event_attendees.count, 'Attendee') %></i></b><br/>
@@ -94,5 +112,7 @@
     <% else %>
       <span class="badge badge-dark float-right">Hidden from Public</span>
     <% end %>
+
+    
   </div>
 </div>

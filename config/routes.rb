@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   post 'events/:id/accept_invite', to: 'events#accept_invite', as: 'accept_event_invite'
   get 'events/:id/copy', to: 'events#copy', as: 'copy_event'
+  get 'events/:id/rating/:rating', to: 'events#ratings', as: 'rate_event'
   post 'events/:id/invite', to: 'events#invite_member', as: 'invite_event_member'
+
 
   resources :events
   resources :groups

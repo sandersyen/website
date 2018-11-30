@@ -158,7 +158,18 @@ body {
     margin-right: 15px;
 }
 
+// Ratings styles.
+.ratings a{
+    color: inherit;
+}
 
+.checked {
+    color: orange;
+}
+
+.rate_event_button {
+    margin-left: 10px;
+}
 
 ul.user{
     padding: 0;
