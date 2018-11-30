@@ -2,11 +2,6 @@
 <div class="card">
   <div class="card-header">
     <strong><%= link_to event.name, event, style: 'color: inherit' %></strong>
-    <% if event.is_viewable %>
-      <span class="badge badge-info float-right">Visible to Public</span>
-    <% else %>
-      <span class="badge badge-dark float-right">Hidden from Public</span>
-    <% end %>
   </div>
   <div class="card-body">
 
@@ -93,6 +88,11 @@
           </div>
         </div>
       </div>
+    <% end %>
+    <% if event.is_viewable %>
+      <span class="badge badge-info float-right">Visible to Public</span>
+    <% else %>
+      <span class="badge badge-dark float-right">Hidden from Public</span>
     <% end %>
   </div>
 </div>
