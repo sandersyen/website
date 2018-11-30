@@ -39,6 +39,7 @@
         <u><b><i>Group:</i></b></u><br>
         <%= link_to event.group.name, event.group %>
       </p>
+      <%if event.end_time < Time.now %>
       <p class = "card-text ratings">
       <b><i>Your Rating</i></b><br>
         <%= link_to rate_event_path(id: event.id, rating: 1) do %>
@@ -57,6 +58,7 @@
         <span class="fa fa-star <% if event.current_rating >= 5 %>checked<% end %>"></span>
         <% end %>
       </p>
+      <% end %>
     <% end %>
 
     <b><i><%= pluralize(event.event_attendees.count, 'Attendee') %></i></b><br/>
