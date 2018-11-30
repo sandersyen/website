@@ -9,13 +9,14 @@
           <div class="row">
             <div class="col">
               <h3 class="card-title">
-                <%= @group.name %>
+                <b>
+                  <%= @group.name %>
+                </b>
               </h3>
             </div>
             <div class="col text-right text-up">
-              <%= link_to edit_group_path(@group), class: 'btn btn-default icon-effect', id:"test" do %>
-              <span class="glyphicon glyphicon-pencil"></span>
-                Edit
+              <%= link_to edit_group_path(@group), id:"test" do %>
+                <%= octicon "pencil", :height => 20, :class => "right left"%>
               <% end %>
             </div>
           </div>
@@ -29,7 +30,7 @@
           </div>
 
           <p class="card-text bg-light text-dark p-3">
-            <u>DESCRIPTION:</u>
+            <u><b><i>DESCRIPTION:</i></b></u>
             <%= @group.description %>
           </p>
 
@@ -37,13 +38,13 @@
             <% if @group.events.each do |event| %>
               <div class="col-sm-12 col-md-6 eq-height group-event-row">
                 <p class="card-text bg-white text-dark h-100 p-3">
-                  <u>UPCOMING EVENT:</u><br>
+                  <u><b><i>UPCOMING EVENT:</i></b></u><br>
                   <%= link_to event.name, event %><br>
-                  <u>WHEN?</u><br>
+                  <u><b><i>WHEN?</i></b></u><br>
                   <%= link_to event.start_time, event %><br>
-                  <u>WHERE?</u><br>
+                  <u><b><i>WHERE?</i></b></u><br>
                   <%= link_to event.location, event %><br>
-                  <u>DESCRIPTION?</u><br>
+                  <u><b><i>DESCRIPTION?</i></b></u><br>
                   <%= link_to event.description, event %><br>
                 </p>
               </div>
@@ -67,7 +68,7 @@
 
     
       <!-- TODO: DO the formatting of this -->
-      <h2>Group Posts</h2>
+      <h2 class="mt-2">Group Posts</h2>
       <%= form_for(@post, url: create_group_post_path(@group)) do |form| %>
         <% if @post.errors.any? %>
           <div class="alert alert-danger">
@@ -83,7 +84,7 @@
         <%= form.hidden_field :user_id %>
         <%= form.hidden_field :group_id %>
         <%= form.text_area :body, class: 'form-control' %>
-        <%= form.submit 'Post', class: 'btn btn-primary' %>
+        <%= form.submit 'Post', class: 'btn btn-primary mt-2' %>
       <% end %>
       <hr/>
       <% if @group.recent_posts.empty? %>
