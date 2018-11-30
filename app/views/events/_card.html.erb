@@ -58,6 +58,7 @@
 
 
     <% if summary %>
+      <hr/>
       <%= link_to 'View Details', event, class: 'btn btn-primary btn-sm' %>
     <% elsif event.can_edit?(current_user) %>
       <hr/>
