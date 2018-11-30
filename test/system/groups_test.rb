@@ -87,14 +87,31 @@ class GroupsTest < ApplicationSystemTestCase
     fill_in 'group_name', with: 'Group name'
     fill_in 'group_description', with: 'Group description'
     check 'group_is_public'
-    # need to fix this... doesn't work.
+    
     select('2', :from => 'group_category_id')
     
     click_on 'Create Group'
     
-    
-    
     assert_selector "#notice", text: "Group was successfully created."
   end
 
+    test "test group posts and delete" do
+        user1 = simulate_login_user_one
+        group = groups(:one)
+        visit group_path(group)
+        fill_in 'group_post_body', with: 'test message'
+        click_on 'Post'
+        assert page.has_content?('test message')
+        find("#post_id-" + GroupPost.last.id.to_s).click
+        assert_selector "#notice", text: "Post was deleted successfully."
+        assert !page.has_content?('test message')
+    end
+
+    test "empty post" do
+        user1 = simulate_login_user_one
+        group = groups(:one)
+        visit group_path(group)
+        click_on 'Post'
+        assert page.has_content?('Body can\'t be blank')
+    end
 end
