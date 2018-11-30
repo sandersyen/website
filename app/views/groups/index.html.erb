@@ -1,30 +1,36 @@
 <br/>
-<div class="container">
-  <div class="card-columns">
-    <% current_user.groups.each do |group| %>
-      <%= link_to(group, style: 'color: inherit') do %>
-        <div class="card">
-          <div class="card-header">
-            <strong><%= truncate(group.name, length: 50) %></strong>
-            <span class="badge badge-primary float-right"><%= group.category.name %></span>
-          </div>
-          <div class="card-body">
-            <p class="card-text">
-              <%= truncate(group.description, length: 200) %>
-            </p>
-            <p class="card-text">
-              <small class="text-muted">
-                <%= pluralize(group.users.count, 'member') %>,
-                <%= pluralize(group.upcoming_events.count, 'upcoming event') %>
-              </small>
-            </p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-  <%= link_to 'Create A Group', new_group_path, class: 'btn btn-primary' %>
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+    </div>
+    <main class="col-12 col-md-8 col-xl-8 bd-content">
+      <div class="card-columns">
+        <% current_user.groups.each do |group| %>
+          <%= link_to(group, style: 'color: inherit') do %>
+            <div class="card">
+              <div class="card-header">
+                <strong><%= truncate(group.name, length: 50) %></strong>
+                <span class="badge badge-primary float-right"><%= group.category.name %></span>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <%= truncate(group.description, length: 200) %>
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">
+                    <%= pluralize(group.users.count, 'member') %>,
+                    <%= pluralize(group.upcoming_events.count, 'upcoming event') %>
+                  </small>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </main>
+    <div class="col-12 col-md-2 col-xl-2 bd-sidebar">
+      <%= link_to 'Create A Group', new_group_path, class: 'btn btn-primary' %>
+    </div>
 </div>
 
 
