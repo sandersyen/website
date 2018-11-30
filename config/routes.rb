@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   delete 'groups/:id/invite', to: 'groups#disinvite_member', as: 'disinvite_group_member'
   post 'groups/:id/accept_invite', to: 'groups#accept_invite', as: 'accept_group_invite'
 
+  post 'events/:id/accept_invite', to: 'events#accept_invite', as: 'accept_event_invite'
   get 'events/:id/copy', to: 'events#copy', as: 'copy_event'
+  post 'events/:id/invite', to: 'events#invite_member', as: 'invite_event_member'
 
   resources :events
   resources :groups
