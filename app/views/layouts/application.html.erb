@@ -102,7 +102,7 @@
         </span>
         <span class="text-muted float-right">
           <%= link_to 'Terms & Conditions', terms_path %> |
-          <%= link_to 'Help', help_path %> |
+          <%= link_to 'Help', help_path(logged_in?: logged_in?) %> |
           <%= link_to 'Report Abuse', '#' %>
         </span>
       </div>

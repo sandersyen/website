@@ -7,9 +7,15 @@
             </h3>
             <p class="card-text limit-height card-content">
                 To use most functions you must sign in with a google account.
-                <div class= "flexVerticalItem">
-                    <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
-                </div>
+                <% if logged_in? %>
+                    <div class= "flexVerticalItem">
+                        <%= link_to 'You are already signed in', '#', class:"btn btn-md btn-secondary mr-sm-2 nav-button disabled"%>
+                    </div>
+                <% else %>
+                    <div class= "flexVerticalItem">
+                        <%= google_sign_in_button 'Sign In With Google', proceed_to: create_login_path, class:"btn btn-md btn-primary mr-sm-2 nav-button" %>
+                    </div>
+                <% end %>
             </p>
            
         </div>
